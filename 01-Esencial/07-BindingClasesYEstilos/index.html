@@ -1,0 +1,42 @@
+<!-- https://es.vuejs.org/v2/guide/instance.html 
+https://es.vuejs.org/v2/guide/instance.html#Hooks-del-Ciclo-de-vida-de-la-Instancia -->
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Vue.JS Data Binding Clases y Estilos</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Me defino unos estilos -->
+    <style>
+        li {
+            cursor: pointer;
+        }
+        .completado {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Tareas</h1>
+        <h2>{{ tareasCompletadas.length }} completadas</h2>
+        <ul>
+         <!--  Le enlazo un estilo completado y lo cambio solo si tiene esta propiedad a verdadero tarea.completado -->
+         <!-- El eveton de botón, forma compata de v-on :click -->
+            <li :class="{completado: tarea.completado}"
+                @click="completarTarea(tarea)" 
+                v-for="tarea in tareas">
+                {{ tarea.titulo }}
+            </li>
+        </ul>
+        <pre>{{ $data }}</pre>
+    </main>
+    <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
