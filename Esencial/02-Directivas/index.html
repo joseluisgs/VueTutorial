@@ -1,0 +1,67 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Vue.JS Directivas</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <main>
+        <!-- show muestra algo si la variable del modelo de datos es verdadero, pero el el elemento está en el DOM, solo que le pone el estilo dipslay es none -->
+        <h1 v-show="conectado">Estoy conectado con show</h1>
+        <!-- La diferencia es que no lo incorpora al DOM -->
+        <h1 v-if="conectado">Estoy conectado con if</h1>
+        <!-- if anidado -->
+        <h2 v-if="edad < 18">No puedes entrar.</h2>
+        <h2 v-else-if="edad > 200">Eres inmortal.</h2>
+
+        <h2 v-else>Puedes entrar.</h2>
+        <!-- De esta manera con template ocultamos o mostramos un bloque completo  -->
+        <template v-if="conectado">
+            <h3>Bienvenido Juan</h3>
+            <ul>
+                <li>
+                    <a href="#">Mis datos</a>
+                    <a href="#">Mensajes</a>
+                    <a href="#">Salir</a>
+                </li>
+            </ul>
+        </template>
+        <h4 v-else>No estás conectado :(</h4>
+
+        <!-- Jugando con listas -->
+        <ul>
+            <li v-for="dia in laborales">{{ dia }}</li>
+        </ul>
+
+        <!-- Matriz de objetos (collection) -->
+        <ul>
+            <!-- v.for nos permite recorrer los datos de una matriz, siempre es bueno tener index -->
+            <!-- Si no tenemos clave, es solo el valor e indice-->
+            <li v-for="(tarea, index) in tareas">
+                {{ index }} - {{ tarea.nombre }}
+                <small>( {{ tarea.prioridad }} )</small>
+            </li>
+        </ul>
+
+        <!-- Objeto -->
+        <ul>
+            <!-- Si es un objeto podemos obtener la clave del objeto -->
+            <li v-for="(value, key, index) in persona">
+                {{ index }} - {{ key }}: {{ value }}
+            </li>
+        </ul>
+
+
+        <!--  Mostramos el valor del objeto Data de Vue -->
+        <pre>{{ $data }}</pre>
+    </main>
+    <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

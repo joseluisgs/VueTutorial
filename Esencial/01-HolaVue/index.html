@@ -1,0 +1,25 @@
+<!doctype html>
+<html class="no-js" lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Hola Vue.js</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <!-- Area de acción de la reactividad de Vue -->
+    <main>
+        <!-- Interpola del modelo de datos y obtiene su variable mensaje y lo pone -->
+        <h1>{{ mensaje }}</h1>
+        <input type="text" v-model="mensaje"> <!-- con v-model enlazamos el modelo de datos con un imput de html -->
+        <pre>{{ $data }}</pre> <!-- El $ es para ponerlo en formato json -->
+    </main>
+    <!-- Cargamos la librería de Vue y nuestro Script -->
+    <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
