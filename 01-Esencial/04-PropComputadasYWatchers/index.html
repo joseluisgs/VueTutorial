@@ -1,0 +1,46 @@
+<!-- TUTORIAL: https://es.vuejs.org/v2/guide/index.html#Manejando-Interacciones-del-Usuario -->
+<!DOCTYPE html>
+<html class="no-js" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Vue.JS Propiedades Computadas y Watchers</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body>
+    <main>
+      <h1>Tareas ordenadas por prioridad calculadas</h1>
+      <ul>
+        <!-- De las tareas obtenemos la propiedad computada que son las de prioridad -->
+        <li v-for="tarea in tareasConPrioridad">
+          {{ tarea.titulo }}
+        </li>
+      </ul>
+      <h1>Tareas ordenadas por antiguedad calculadas</h1>
+      <ul>
+        <!-- De las tareas obtenemos la propiedad computada que son las de antiguedad  -->
+        <li v-for="tarea in tareasPorAntiguedad">
+          {{ tarea.titulo }}
+        </li>
+      </ul>
+      <form v-on:submit.prevent="agregarTarea">
+        <input type="text" placeholder="Introduce tu tarea" v-model="nuevaTarea" />
+        <input type="submit" value="Enviar tarea" />
+      </form>
+     <!--  Otro ejemplo de propiedades computadas -->
+      <h3>Mensaje: {{this.nuevaTarea}}</h3>
+      <h3>Mensaje al reves: {{this.mensajeAlReves}}</h3>
+    <!-- Utilizamos watcher para ir observando variables y disparar acciones si ocurre lo que queremos sobre ella. -->
+    <span v-if="error.length != 0" class="tag is-warning">
+        {{ error }}
+    </span>
+
+      <!--  Mostramos el valor del objeto Data de Vue -->
+      <pre>{{ $data }}</pre>
+    </main>
+    <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

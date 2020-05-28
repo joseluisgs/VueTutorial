@@ -1,4 +1,4 @@
-<!-- TUTORIAL: https://es.vuejs.org/v2/guide/index.html#Manejando-Interacciones-del-Usuario -->
+<!-- https://es.vuejs.org/v2/guide/computed.html -->
 <!doctype html>
 <html class="no-js" lang="es">
 
@@ -24,7 +24,7 @@
             <!-- Lo enlazamos con ele elemento del modelo de datos nuevaTarea -->
             <input type="submit" value="Enviar tarea Formulario">
         </form>
-        
+
         <!-- Sin Formularios -->
         <input type="text" placeholder="Introduce tu tarea" v-model="nuevaTarea">
         <input type="button" value="Enviar Tarea Botón" v-on:click="agregarTarea"> <!-- se puede simplificar con @click -->
