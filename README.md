@@ -12,6 +12,7 @@ Se describe los elementos ensenciales de Vue
 - Bindings entre Clases y Estilos
 - Transiciones y animaciones
 - Ajax con Resource y Axios (recomendado Axios)
+- Resumen con Lista de tareas con Almacenamiento en Storage
 
 
 ## Autor
