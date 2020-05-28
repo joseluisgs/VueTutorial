@@ -13,6 +13,8 @@
 <body>
     <!-- Area de acción de la reactividad de Vue -->
     <main>
+         <!-- Con las propuedades estáticas podemos hacer un v-bind  -->
+        <h1> <a v-bind:href="mensaje" target="_blank">{{mensaje}}</a></h1>
         <!-- Interpola del modelo de datos y obtiene su variable mensaje y lo pone -->
         <h1>{{ mensaje }}</h1>
         <input type="text" v-model="mensaje"> <!-- con v-model enlazamos el modelo de datos con un imput de html -->

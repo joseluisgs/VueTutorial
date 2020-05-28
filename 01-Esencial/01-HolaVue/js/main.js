@@ -5,7 +5,8 @@
 new Vue({
     el: 'main',
     data: {
-        conectado: false,
+        conectado: true,
         edad: 44,
+        mensaje:'http://twitter.com/joseluisgonsan',
     }
 });

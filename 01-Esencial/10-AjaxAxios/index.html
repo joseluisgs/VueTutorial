@@ -12,7 +12,7 @@
 
 <body>
     <main>
-       <!--  Sacamos las fotos de las personas, haciendo un for y obteniendo el src de la imagen -->
+       <!--  Sacamos las fotos de las personas, haciendo un for y obteniendo el src de la imagen, por eso hacemos el v-bind con src de manera compacta  -->
         <img 
             v-for="persona in personas" 
             :src="persona.picture.thumbnail" 
