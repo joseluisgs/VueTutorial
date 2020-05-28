@@ -25,7 +25,8 @@ new Vue({
             antiguedad: 378
         },
         ],
-        error: ''
+        error: '',
+        errorComp: ''
     },
     // Métodos
     methods: {
@@ -50,15 +51,25 @@ new Vue({
         },
         tareasPorAntiguedad() {
             return this.tareas.sort((a, b) => b.antiguedad - a.antiguedad);
-        }
+        },
+        errorComputado() {
+            if (this.nuevaTarea.length < 5 && this.nuevaTarea.length >= 1) {
+                this.errorComp = 'Nombre de tarea demasiado corto de manera computada';
+                return true;
+            } else {
+                this.errorComp = '';
+                return false;
+            }
+        },
     },
     // Cuando tiene algunos datos que necesitan cambiarse en función de otros datos, es tentador utilizar watch en exceso, 
     // especialmente si proviene de tener experiencia en AngularJS. 
     // Sin embargo, a menudo es una mejor idea usar una propiedad computada en lugar de una imperativa llamada a watch
+    // Como watch observo esta variable de mi modelo de dato (se debe llamar igual)
      watch: {
         nuevaTarea() {
              if (this.nuevaTarea.length < 5) {
-                this.error = 'Nombre de tarea demasiado corto';
+                this.error = 'Nombre de tarea demasiado corto de manera observada';
             } else {
                 this.error = '';
             }

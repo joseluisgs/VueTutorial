@@ -36,6 +36,10 @@
     <span v-if="error.length != 0" class="tag is-warning">
         {{ error }}
     </span>
+    <br>
+    <span v-if="errorComputado" class="tag is-warning">
+        {{ errorComp }}
+    </span>
 
       <!--  Mostramos el valor del objeto Data de Vue -->
       <pre>{{ $data }}</pre>
