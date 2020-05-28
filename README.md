@@ -1,6 +1,18 @@
 # VueTutorial
 Ejemplos de Tutorial Vue que iré haciendo poco a poco
 
+## Temas
+### Vue Esencial
+Se describe los elementos ensenciales de Vue
+- Bindings y conexiones entre datos y elementos HTML
+- Directivas
+- Eventos
+- Propiedades computadas, obervadores y filtros
+- Comunicaciones entre instancios y ciclo de vida de un componente
+- Bindings entre Clases y Estilos
+- Transiciones y animaciones
+- Ajaz con Resource y Axios (recomendado Axios)
+
 
 ## Autor
 
