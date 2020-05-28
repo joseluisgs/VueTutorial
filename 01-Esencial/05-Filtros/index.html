@@ -1,0 +1,28 @@
+<!-- TUTORIAL: https://es.vuejs.org/v2/guide/filters.html -->
+<!DOCTYPE html>
+<html class="no-js" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Vue.JS Filtros</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body>
+    <main>
+      <input type="search" v-model="busqueda" placeholder="Buscar juego" />
+      <ul>
+        <li v-for="juego in buscarJuego">
+          {{ juego.titulo | capitalize | reverse }} <!-- Podemos aplicar tantos filtros como quetramos -->
+        </li>
+      </ul>
+      <input type="range" min="0" max="10" v-model="minimo" />
+
+      <!--  Mostramos el valor del objeto Data de Vue -->
+      <pre>{{ $data }}</pre>
+    </main>
+    <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

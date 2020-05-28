@@ -41,6 +41,7 @@ new Vue({
         },
     },
     // Prpiedades computadas, es dcir, realiza operaciones de con elementos de nuestro modelo automáticamente antes de renderizarlos
+    // solo se evalua solo una vez, cuando se detecta que se ha modificado la parte del modelo afectada.
     computed: {
         tareasConPrioridad() {
             return this.tareas.filter((tarea) => tarea.prioridad);

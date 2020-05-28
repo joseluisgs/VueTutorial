@@ -13,14 +13,14 @@
     <main>
       <h1>Tareas ordenadas por prioridad calculadas</h1>
       <ul>
-        <!-- De las tareas obtenemos la propiedad computada que son las de prioridad -->
+        <!-- De las tareas obtenemos la propiedad computada que son las de prioridad. Nos ahiorramos hacer un if por prioridad -->
         <li v-for="tarea in tareasConPrioridad">
           {{ tarea.titulo }}
         </li>
       </ul>
       <h1>Tareas ordenadas por antiguedad calculadas</h1>
       <ul>
-        <!-- De las tareas obtenemos la propiedad computada que son las de antiguedad  -->
+        <!-- De las tareas obtenemos la propiedad computada que son las de antiguedad. Nos ahiorramos hacer un if por prioridad -->
         <li v-for="tarea in tareasPorAntiguedad">
           {{ tarea.titulo }}
         </li>
@@ -29,17 +29,17 @@
         <input type="text" placeholder="Introduce tu tarea" v-model="nuevaTarea" />
         <input type="submit" value="Enviar tarea" />
       </form>
-     <!--  Otro ejemplo de propiedades computadas -->
+      <!--  Otro ejemplo de propiedades computadas -->
       <h3>Mensaje: {{this.nuevaTarea}}</h3>
       <h3>Mensaje al reves: {{this.mensajeAlReves}}</h3>
-    <!-- Utilizamos watcher para ir observando variables y disparar acciones si ocurre lo que queremos sobre ella. -->
-    <span v-if="error.length != 0" class="tag is-warning">
+      <!-- Utilizamos watcher para ir observando variables y disparar acciones si ocurre lo que queremos sobre ella. -->
+      <span v-if="error.length != 0" class="tag is-warning">
         {{ error }}
-    </span>
-    <br>
-    <span v-if="errorComputado" class="tag is-warning">
+      </span>
+      <br />
+      <span v-if="errorComputado" class="tag is-warning">
         {{ errorComp }}
-    </span>
+      </span>
 
       <!--  Mostramos el valor del objeto Data de Vue -->
       <pre>{{ $data }}</pre>
