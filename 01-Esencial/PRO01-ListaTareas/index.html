@@ -12,11 +12,16 @@
 
     <!-- Me defino unos estilos -->
     <style>
-        .activada {
+        .estado {
             cursor: pointer;
         }
+
         .completado {
             text-decoration: line-through;
+        }
+
+        .invalido {
+            border: 1px solid red;
         }
     </style>
 
@@ -26,36 +31,68 @@
 <body>
     <main>
         <h1>Mi lista de tareas con Vue.JS</h1>
+        
+        <!-- Formulario para añadir tarea -->
+        <h4>Añadir una nueva tarea</h4>
+        <form v-on:submit.prevent="agregarTarea">
+            
+            <!-- Nombre de la tarea -->
+            <label for="nombre">Nombre</label>
+            <input type="text" required id="nombre" v-model="tarea.nombre" :class="{ invalido: !errorNombre }">
+            <span class="invalido" v-if="!errorNombre">El nombre no es correcto</span>
+            
+            <!-- prioridad de la tarea, solo la muestro si acepta -->
+            <br>
+            <label for="acepta">Proridad</label>
+            <span>Sí</span>
+            <input id="acepta" type="checkbox" v-model="tarea.acepta">
+            <br>
+            <template v-if="tarea.acepta">
+                <label for="prioridad">Prioridad</label>
+                
+                <!-- La prioridad no sería neceasrio evaluarla porque podemos hacer uso de html5 y sus validaciones -->
+                <input type="number" required id="prioridad" v-model="tarea.prioridad"
+                    :class="{ invalido: !errorPrioridad }" max="10" min="1" step="1" placeholder="1">
+                <span class="invalido" v-if="!errorPrioridad">LA priordiad debe estar entre 1 y 10</span>
+            
+            </template>
+            <br>
+            
+            <!-- Si llegamos aquí sin errores, pues mostramos el botón aceptar -->
+            <input type="submit" value="Añadir Tarea" v-if="errorNombre && errorPrioridad">
+        
+        </form>
+        
         <!-- Tapamos todo el bloque -->
-       <!--  Tareas activas -->
-       <h2>Tareas activas</h2>
-       <input type="search" v-model="busqueda" placeholder="Buscar tarea activa" />
+        
+        <!--  Tareas activas -->
+        <h2>Tareas activas</h2>
+        <input type="search" v-model="busqueda" placeholder="Buscar tarea activa" />
         <template v-if="tareasActivas.length > 0">
             <ul>
                 <!-- Ponemos las tereas activadas y con el evento clic le pasamos el id -->
-                <li class="activada" 
-                v-for="(tarea, index) in tareasActivas"
-                @click="completarTarea(tarea.id)">
+                <li class="estado" v-for="(tarea, index) in tareasActivas" @click="cambiarEstado(tarea.id)">
                     {{ index+1 }} - {{ tarea.nombre }}
                     <small>( {{ tarea.prioridad }} )</small>
                 </li>
             </ul>
         </template>
-       <!--  Tareas completadas -->
+        
+        <!--  Tareas completadas -->
         <template v-if="tareasTerminadas.length > 0">
             <h2>Tareas Terminadas</h2>
             <ul>
-               <!--  La pintamos con estilos -->
-            <li :class="{completado: tarea.terminada}" 
-            v-for="(tarea, index) in tareasTerminadas">
-                {{ index+1 }} - {{ tarea.nombre }}
-                <small>( {{ tarea.prioridad }} )</small>
-            </li>
-        </ul>
+                <!--  La pintamos con estilos -->
+                <li :class="{completado: tarea.terminada}" class="estado" v-for="(tarea, index) in tareasTerminadas"
+                    @click="cambiarEstado(tarea.id)">
+                    {{ index+1 }} - {{ tarea.nombre }}
+                    <small>( {{ tarea.prioridad }} )</small>
+                </li>
+            </ul>
         </template>
-       
 
-      
+
+        <br><br>
         <!-- De esta manera mostramos el modelo de datos, es solo para depurar o curiosidad -->
         <pre>{{ $data }}</pre>
     </main>
