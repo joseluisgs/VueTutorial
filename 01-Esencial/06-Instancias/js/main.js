@@ -4,6 +4,9 @@ const vm1 = new Vue({
     data: {
         mensaje: 'Instancia Vue 1',
     },
+    created() {
+        console.log('Created: ', this.mensaje);
+    },
     // antes de actualizarme
     beforeUpdate() {
         console.log('BeforeUpdate: ', this.mensaje);
@@ -11,6 +14,9 @@ const vm1 = new Vue({
     // Al actualizarme
     updated() {
         console.log('Update: ', this.mensaje);
+    },
+    mounted() {
+        console.log('Mounted: ', this.mensaje);
     },
     methods: {
         alReves() {

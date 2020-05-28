@@ -3,7 +3,9 @@
 
 new Vue({
     el: 'main',
-    mounted() {
+    // Prefiero hacerlo y es más recomendable en Created
+    // mounted() {
+    created() {
         this.cargarPersonas();
     },
     data: {

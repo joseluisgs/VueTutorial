@@ -11,7 +11,7 @@ Se describe los elementos ensenciales de Vue
 - Comunicaciones entre instancios y ciclo de vida de un componente
 - Bindings entre Clases y Estilos
 - Transiciones y animaciones
-- Ajaz con Resource y Axios (recomendado Axios)
+- Ajax con Resource y Axios (recomendado Axios)
 
 
 ## Autor
