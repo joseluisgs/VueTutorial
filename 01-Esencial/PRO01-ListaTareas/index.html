@@ -1,0 +1,67 @@
+<!-- Proyecto Conjunto Esencial -->
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Vue.JS Proyecto 01 </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Me defino unos estilos -->
+    <style>
+        .activada {
+            cursor: pointer;
+        }
+        .completado {
+            text-decoration: line-through;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <main>
+        <h1>Mi lista de tareas con Vue.JS</h1>
+        <!-- Tapamos todo el bloque -->
+       <!--  Tareas activas -->
+       <h2>Tareas activas</h2>
+       <input type="search" v-model="busqueda" placeholder="Buscar tarea activa" />
+        <template v-if="tareasActivas.length > 0">
+            <ul>
+                <!-- Ponemos las tereas activadas y con el evento clic le pasamos el id -->
+                <li class="activada" 
+                v-for="(tarea, index) in tareasActivas"
+                @click="completarTarea(tarea.id)">
+                    {{ index+1 }} - {{ tarea.nombre }}
+                    <small>( {{ tarea.prioridad }} )</small>
+                </li>
+            </ul>
+        </template>
+       <!--  Tareas completadas -->
+        <template v-if="tareasTerminadas.length > 0">
+            <h2>Tareas Terminadas</h2>
+            <ul>
+               <!--  La pintamos con estilos -->
+            <li :class="{completado: tarea.terminada}" 
+            v-for="(tarea, index) in tareasTerminadas">
+                {{ index+1 }} - {{ tarea.nombre }}
+                <small>( {{ tarea.prioridad }} )</small>
+            </li>
+        </ul>
+        </template>
+       
+
+      
+        <!-- De esta manera mostramos el modelo de datos, es solo para depurar o curiosidad -->
+        <pre>{{ $data }}</pre>
+    </main>
+    <!-- De esta manera cargamos Vue en modo dev -->
+    <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
