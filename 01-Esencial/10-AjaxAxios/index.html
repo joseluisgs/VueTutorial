@@ -1,0 +1,30 @@
+<!-- https://github.com/axios/axios Es la forma recomendada -->
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Vue.JS Ajax Axios</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <main>
+       <!--  Sacamos las fotos de las personas, haciendo un for y obteniendo el src de la imagen -->
+        <img 
+            v-for="persona in personas" 
+            :src="persona.picture.thumbnail" 
+            :alt="persona.name.first">
+        
+            <pre>{{ $data }}</pre>
+    </main>
+
+    <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+    <!-- Para usar esta librería debemos importarla -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
