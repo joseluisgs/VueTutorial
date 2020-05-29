@@ -1,0 +1,32 @@
+<!-- https://es.vuejs.org/v2/guide/components.html#Enviando-mensajes-a-componentes-padre-con-eventos -->
+<!-- https://es.vuejs.org/v2/guide/components-custom-events.html -->
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Vue.JS Eventos</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+
+  <body>
+    <main>
+    <main>
+   <!--    Los buses nos van a permitiur comunicarnos entre hijos o hermanos o componentes del mismo nivel o distintos, siempre que se suscriban
+      Es algo costoso, por eso está poco se abandona por otras técnicas, pero si no tenemos muchos buses es la forma más directa y rápida.
+      Es decir, si no abusamos de ellos o para cosas muy concretas es lo mejor -->
+      <!-- Inicio el componente pasandole mi objeto productos -->
+      <listado-productos :productos="productos"></listado-productos>
+      <!-- como vemos estos dos componentes que son hijos de la instancia principal de Vue se comunican entre ellos por el bus
+      Al día de hoy los buses se han cambiado por Vuex, pero para estas cosas si no quieres implementar Vuex completo se usan -->
+      <carrito-compra></carrito-compra>
+      <hr>
+      <pre>{{ $data }}</pre>
+
+    <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
