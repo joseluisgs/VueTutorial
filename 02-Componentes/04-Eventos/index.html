@@ -13,11 +13,13 @@
 
   <body>
     <main>
-      <!-- Los eventos es la forma de pasar información de Hijo a Padre -->
+      <!-- Cuando hacemos cli cambiamos las variables del padre, instancia de Vue -->
       <button @click="mostrarExito = true">Exito</button>
       <button @click="mostrarError = true">Error</button>
       <button @click="mostrarAdvertencia = true">Advertencia</button>
-    
+      
+     <!--  Componente alerrta personalizado con propiedades y slots -->
+     <!-- Como se puede ver padre recible el evento cultar del componente, y cuando ocurra cambia sus valores y oculta -->
       <alerta @ocultar="mostrarExito = false" v-show="mostrarExito" tipo="alerta--exito" posicion="alerta--arriba-derecha">
         <template slot="header">Todo ok :)</template>
         <template>Este es el nuevo contenido del alerta :)</template>
