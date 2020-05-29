@@ -1,0 +1,26 @@
+<!-- https://es.vuejs.org/v2/guide/components.html#Enviando-mensajes-a-componentes-padre-con-eventos -->
+<!-- https://es.vuejs.org/v2/guide/components-custom-events.html -->
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Vue.JS Eventos</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+
+  <body>
+    <main>
+      <lista-tareas :tareas="tareas">
+        Tareas que necesito finalizar ya!
+      </lista-tareas>
+      <pre>{{ $data }}</pre>
+    </main>
+
+    <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

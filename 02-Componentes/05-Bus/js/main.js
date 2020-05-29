@@ -43,7 +43,7 @@ Vue.component('carrito-compra', {
             total: 0,
         }
     },
-    // On del bus, aquí escucho o leo del bus en el vento emitir
+    // On del bus, aquí escucho o leo del bus en el vento emitir, al creame escuchamos
     created() {
         eventBus.$on('anadir', (precio) => {
             if (this.total >= 0) {
