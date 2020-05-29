@@ -1,0 +1,56 @@
+<!-- Crear un componente personalizado con toda su lógica -->
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Vue.JS Listado de Usuarios</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+
+  <body>
+    <main>
+
+     <!--  Muestro el componente usuarios, que es todo el componente con el buscador y todo  -->
+      <usuarios :fuente="fuente">
+        <h1>Usuarios Registrados</h1>
+      </usuarios>
+    </main>
+    
+    <!-- Este es el template que lo he saco aquí, porque si no hace que el componente sea muy grande, haré referencia a él. Ya veremos otars formas dew hacerlo mejor :) -->
+    <!-- Todo esto de las tenplates cambiara cuando usamos SComponentes SFC https://es.vuejs.org/v2/guide/single-file-components.htm -->
+    <template id="usuarios-template">
+      <div>
+        <!-- Aquí recibo mi slot h1, para personalizar la cabecera -->
+        <section class="cabecera">
+          <slot></slot>
+          <!-- actualizamos y lanzamos la busqueda con v-model, ya sabemos que irá al campo búsuqueda -->
+          <input type="search" placeholder="Filtrar usuario" v-model="busqueda">
+        </section>
+        <hr>
+        <!-- Lista de usuarios, recorro uno a uno y como dato, le paso el usuario que existe en la lista filtrarUsuarios -->
+        <section class="usuarios">
+          <usuario :datos="usuario" v-for="usuario in filtrarUsuarios"></usuario>
+        </section>
+      </div>
+    </template>
+
+   <!--  Este es el template de usuario -->
+    <template id="usuario-template">
+      <div class="usuario">
+        <!-- Recibo mi foto gracias llamado datos = usuario . nombre porque así lo he enlazado -->
+        <img align="left" :src="datos.foto" :alt="datos.nombre">
+        <section>
+          <h1>{{ datos.nombre }}</h1>
+          <small>{{ datos.correoe}}</small>
+        </section>
+      </div>
+    </template>
+
+    <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
