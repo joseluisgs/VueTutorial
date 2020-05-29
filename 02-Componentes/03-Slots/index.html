@@ -1,100 +1,44 @@
-<!-- https://es.vuejs.org/v2/guide/components.html#Pasando-datos-a-componentes-secundarios-con-Props -->
-<!doctype html>
+<!-- https://es.vuejs.org/v2/guide/components-slots.html -->
+<!-- https://es.vuejs.org/v2/guide/components-slots.html#Slots-con-Scope -->
+<!DOCTYPE html>
 <html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Vue.JS Slots</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/main.css">
+  </head>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Vue.JS Propiedades</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-
-<body>
+  <body>
     <main>
-        <!-- Debemos decirle a Vue que examine la persona que le pasamos
-        Esto es sencillo. con las propiedades comunicamos el padre con el hijo.
-        La instancia principal de Vue tiene a las personas. Se las pasamos al componente elegir-ganados a traves de la propuedad listado.
-        Es decir, las propiedades es como los parametros del constructor del comnponente. Es la forma de pasarle datos al componente hijos desde el padre.
-        Aquí lo que hacemos es decir renderizate eleghir ganador pero en tu listado, ten mi lista de personas. -->
-       <!--  https://es.vuejs.org/v2/guide/components-props.html#Flujo-de-datos-unidireccional -->
-        <elegir-ganador :listado="personas" inline-template>
-            <div>
-                <h1 v-if="ganador">El ganador es: {{ ganador }}</h1>
-                <template v-else>
-                    <h1>Participantes</h1>
-                    <ul>
-                        <li v-for="persona in listado">{{ persona }}</li>
-                    </ul>
-                </template>
-                <button @click="elegirGanador">Elegir ganador</button>
-            </div>
-        </elegir-ganador>
+      <!-- Tipo y posición son propiedades- El resto de los datos los paso como slots. Los slots son útiles para que el template sea dinámico -->
+      <alerta tipo="alerta--exito" posicion="alerta--arriba-derecha">
+       <!--  El texto de slot header sera Todo k. -->
+        <template slot="header">Todo ok :)</template>
+       <!--  Este va al cuerpo del lot  -->
+        <template>Este es el nuevo contenido del alerta :)</template>
+        <!--  Este texto va al slot footer   -->
+        <template slot="footer">Puedes continuar con normalidad</template>
+      </alerta>
 
-       <!--  Ponemos otro componente. este caso le pasamos nuestra variable autor como propiedad nombre del componente y la edad.
-    Recuerda los :nombre o :algo como elemento de la pripiedad del Componente al que le quieres meter los datos
-    Una propieda de un componente se actualza, es reactiva a los cambios de padre a hijo -->
-   <!--  Así esta MAL porque estamos mutando el valor de la propiedad, cosa que no está permitido, pasamos valores de padre a hijo, pero no podemos cambiarlos. 
-Prueba cambiando la template donde no renderizamos el mismo, si no una propiedac omputada-->
-        <autor :nombre="autor" :edad="99"></autor>
+      <alerta tipo="alerta--error" posicion="alerta--arriba-izquierda">
+        <template slot="header">Error fatal</template>
+        <template>El mundo está a punto de implosionar</template>
+        <template slot="footer">RIP</template>
+      </alerta>
 
-       <!--  Otro ejemplo  -->
-      <!--  Aquñi solo listamos los candidatos -->
-      <!-- Estos datos estan validados
-    https://es.vuejs.org/v2/guide/components-props.html#Validacion-de-la-propiedad -->
-        <candidato v-for="candidato in candidatos" :nombre="candidato.name.first" :correoe="candidato.email"
-            :imagen="candidato.picture.thumbnail">
-        </candidato>
-        
+      <alerta tipo="alerta--advertencia" posicion="alerta--abajo-izquierda">
+        <template slot="header">Atención</template>
+        <template>Este es el nuevo contenido del alerta :)</template>
+        <template slot="footer">Puedes continuar con normalidad</template>
+      </alerta>
 
-
-        <pre>{{ $data }}</pre>
+      <pre>{{ $data }}</pre>
     </main>
-   <!--  De esta manera le indicamos que esta es la plantilla a mostrar por cada candidato -->
-    <template id="candidato-template">
-        <blockquote>
-            <img :src="imagen" align="right">
-            <h1> {{ nombre }} </h1>
-            <h2> {{ correoe }}</h2>
-            <ul>
-                <li v-for="(value, key, index) in location">
-                    {{ value }}
-                </li>
-            </ul>
-            <hr>
-        </blockquote>
-    </template>
-
-    <!-- Con tag template :) -->
-    <!--<template id="elegir-ganador-template">
-    <div>
-        <h1 v-if="ganador">El ganador es: {{ ganador }}</h1>
-        <template v-else>
-            <h1>Participantes</h1>
-            <ul>
-                <li v-for="persona in listado">{{ persona }}</li>
-            </ul>
-        </template>
-        <button @click="elegirGanador">Elegir ganador</button>
-    </div>
-</template>-->
-    <!-- Con script :( -->
-    <!--<script type="text/template" id="elegir-ganador-template">
-    <div>
-        <h1 v-if="ganador">El ganador es: {{ ganador }}</h1>
-        <template v-else>
-            <h1>Participantes</h1>
-            <ul>
-                <li v-for="persona in listado">{{ persona }}</li>
-            </ul>
-        </template>
-        <button @click="elegirGanador">Elegir ganador</button>
-    </div>
-</script>-->
     <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="js/main.js"></script>
-
-</body>
-
+  </body>
 </html>
