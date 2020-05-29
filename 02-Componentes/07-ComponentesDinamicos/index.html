@@ -1,0 +1,36 @@
+<!-- https://es.vuejs.org/v2/guide/components-registration.html#Registro-local 
+https://es.vuejs.org/v2/guide/components-dynamic-async.html#ad -->
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Vue.JS Componentes dinámicos</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+
+  <body>
+    <main>
+      <!-- como vemos al padre le decimos en todo momento cual es el componente que va a mostrar según lo pulsado en el botón -->
+      <button @click="seleccionado = 'lista-tareas'">Tareas</button>
+      <button @click="seleccionado = 'contacto'">Contacto</button>
+      <button @click="seleccionado = 'bio'">BIO</button>
+      
+      <!-- De esta manera nos ahorramos los if show y lo ponemos como componet que nos permite cambiar el componente metemos aquí  
+      tenemos un único punto de montaje universal para cualquier cantidad de componentes. De esta forma podemos decidir 
+      qué componente está montado en cada momento -->
+      <component :is="seleccionado"></component>
+    
+      <!--    <lista-tareas></lista-tareas>
+        <contacto></contacto>
+        <bio></bio>-->
+      <pre>{{ $data }}</pre>
+    </main>
+
+    <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
