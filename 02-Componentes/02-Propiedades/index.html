@@ -1,0 +1,72 @@
+<!-- https://es.vuejs.org/v2/guide/components.html#Pasando-datos-a-componentes-secundarios-con-Props -->
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Vue.JS Propiedades</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <main>
+        <!-- Debemos decirle a Vue que examine la persona que le pasamos
+        Esto es sencillo. con las propiedades comunicamos el padre con el hijo.
+        La instancia principal de Vue tiene a las personas. Se las pasamos al componente elegir-ganados a traves de la propuedad listado.
+        Es decir, las propiedades es como los parametros del constructor del comnponente. Es la forma de pasarle datos al componente hijos desde el padre.
+        Aquí lo que hacemos es decir renderizate eleghir ganador pero en tu listado, ten mi lista de personas. -->
+        <elegir-ganador :listado="personas" inline-template>
+            <div>
+                <h1 v-if="ganador">El ganador es: {{ ganador }}</h1>
+                <template v-else>
+                    <h1>Participantes</h1>
+                    <ul>
+                        <li v-for="persona in listado">{{ persona }}</li>
+                    </ul>
+                </template>
+                <button @click="elegirGanador">Elegir ganador</button>
+            </div>
+        </elegir-ganador>
+
+       <!--  Ponemos otro componente. este caso le pasamos nuestra variable autor como propiedad nombre del componente y la edad. -->
+        <autor :nombre="autor" :edad="99"></autor>
+
+
+
+        <pre>{{ $data }}</pre>
+    </main>
+
+    <!-- Con tag template :) -->
+    <!--<template id="elegir-ganador-template">
+    <div>
+        <h1 v-if="ganador">El ganador es: {{ ganador }}</h1>
+        <template v-else>
+            <h1>Participantes</h1>
+            <ul>
+                <li v-for="persona in listado">{{ persona }}</li>
+            </ul>
+        </template>
+        <button @click="elegirGanador">Elegir ganador</button>
+    </div>
+</template>-->
+    <!-- Con script :( -->
+    <!--<script type="text/template" id="elegir-ganador-template">
+    <div>
+        <h1 v-if="ganador">El ganador es: {{ ganador }}</h1>
+        <template v-else>
+            <h1>Participantes</h1>
+            <ul>
+                <li v-for="persona in listado">{{ persona }}</li>
+            </ul>
+        </template>
+        <button @click="elegirGanador">Elegir ganador</button>
+    </div>
+</script>-->
+    <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
