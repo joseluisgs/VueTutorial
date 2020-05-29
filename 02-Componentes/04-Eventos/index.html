@@ -1,11 +1,11 @@
-<!-- https://es.vuejs.org/v2/guide/components-slots.html -->
-<!-- https://es.vuejs.org/v2/guide/components-slots.html#Slots-con-Scope -->
+<!-- https://es.vuejs.org/v2/guide/components.html#Enviando-mensajes-a-componentes-padre-con-eventos -->
+<!-- https://es.vuejs.org/v2/guide/components-custom-events.html -->
 <!DOCTYPE html>
 <html class="no-js" lang="">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Vue.JS Slots</title>
+    <title>Vue.JS Eventos</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="css/main.css">
@@ -13,66 +13,33 @@
 
   <body>
     <main>
-      <!-- Tipo y posición son propiedades- El resto de los datos los paso como slots. Los slots son útiles para que el template sea dinámico
-      Es decir, hacemos un componente y hacemos que su vista y estilos sea paremtrizables  -->
-      <alerta tipo="alerta--exito" posicion="alerta--arriba-derecha">
-       <!--  El texto de slot header sera Todo k. -->
+      <!-- Los eventos es la forma de pasar información de Hijo a Padre -->
+      <button @click="mostrarExito = true">Exito</button>
+      <button @click="mostrarError = true">Error</button>
+      <button @click="mostrarAdvertencia = true">Advertencia</button>
+    
+      <alerta @ocultar="mostrarExito = false" v-show="mostrarExito" tipo="alerta--exito" posicion="alerta--arriba-derecha">
         <template slot="header">Todo ok :)</template>
-       <!--  Este va al cuerpo del lot  -->
         <template>Este es el nuevo contenido del alerta :)</template>
-        <!--  Este texto va al slot footer   -->
         <template slot="footer">Puedes continuar con normalidad</template>
       </alerta>
-
-      <alerta tipo="alerta--error" posicion="alerta--arriba-izquierda">
+    
+      <alerta @ocultar="mostrarError = false" v-show="mostrarError" tipo="alerta--error"
+        posicion="alerta--arriba-izquierda">
         <template slot="header">Error fatal</template>
         <template>El mundo está a punto de implosionar</template>
         <template slot="footer">RIP</template>
       </alerta>
-
-      <alerta tipo="alerta--advertencia" posicion="alerta--abajo-izquierda">
+    
+      <alerta @ocultar="mostrarAdvertencia = false" v-show="mostrarAdvertencia" tipo="alerta--advertencia"
+        posicion="alerta--abajo-izquierda">
         <template slot="header">Atención</template>
         <template>Este es el nuevo contenido del alerta :)</template>
         <template slot="footer">Puedes continuar con normalidad</template>
       </alerta>
-
-      <h2>Mis tareas</h2>
-      <mis-tareas :listado="tareas">
-        <template slot="tarea" scope="datos"> <!-- Datos tittle es como es tarea titulo es como los casamos. el fondo estamos diciendo que datos. titulo = tarea.titutlo -->
-         <!--  Renderizamos con h1 -->
-          <li>
-            <h1>{{ datos.title }}</h1>
-          </li>
-        </template>
-      </mis-tareas>
-      
-      <mis-tareas :listado="tareas">
-        <template slot="tarea" scope="datos">
-         <!--  Renderizamos con Li -->
-          <li>{{ datos.title }}</li>
-        </template>
-      </mis-tareas>
-      
-      <mis-tareas :listado="tareas">
-        <template slot="tarea" scope="datos">
-          <li>🐱{{ datos.title }}</li>
-        </template>
-      </mis-tareas>
-
+    
       <pre>{{ $data }}</pre>
     </main>
-
-    <!-- Template Con Scoped Slots, lo que hacemos  -->
-    <template id="mis-tareas-template">
-      <ul>
-        <!-- Al hacerlo así podemos hacer que cada tarea se rendeirce como queramos no tiene que ser un li, o lo que sea, parametrizarlo 
-        Se va a modificar a ravés de título -->
-        <slot name="tarea" v-for="tarea in listado" :title="tarea.titulo"></slot>
-        <!--        <li v-for="tarea in listado">
-                {{ tarea.titulo }}
-            </li>-->
-      </ul>
-    </template>
 
     <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
