@@ -10,6 +10,7 @@ Vue.component('mis-tareas', {
             });
     },
     // En un componente los datos son una funcion que devuelve un objeto con la propiedad las tareas..
+    // De esta manera un numero indeterminado de las mismas instancias tendrá sus propios datos
     data() {
         return {
             tareas: [],

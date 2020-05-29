@@ -12,7 +12,20 @@ Se describe los elementos ensenciales de Vue
 - Bindings entre Clases y Estilos
 - Transiciones y animaciones
 - Ajax con Resource y Axios (recomendado Axios)
-- Resumen con Lista de tareas con Almacenamiento en Storage
+- Ejemplo resumen con Lista de tareas con Almacenamiento en Storage
+
+### Componentes
+Se describe los elementos ensenciales de Vue
+- Introducción a los componentes
+- Propiedades
+- Slots
+- Eventos
+- Bus
+- Componentes anidados
+- Componentes dinámicos
+- Inputs personalizados
+- Ejemplo resumen con Lista de Contactos con distintos componentes 
+- Ejemplo lista de contactos con elementos intercambiables
 
 
 ## Autor

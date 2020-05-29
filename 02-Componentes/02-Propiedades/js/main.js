@@ -1,4 +1,6 @@
 // Componente elegir-ganador
+// A través de las propiedades podemos crear componentes Vue.js que comparten 
+// la misma estructura(template) pero muestran diferente información(propiedades).
 Vue.component('elegir-ganador', {
     // Propiedades, es la manera de recibir la información que necesita este Componente desde nuestro padre.
     props: ['listado'],

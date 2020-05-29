@@ -1,0 +1,63 @@
+<!-- Crear un componente personalizado con toda su lógica -->
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Vue.JS Listado de Usuarios</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+
+  <body>
+    <!-- Codigo principal -->
+    <main>
+      <article class="usuarios">
+        <section class="disponibles">
+         <!--  En todo momento reativamente calculo la logitud de la listas de usuarios -->
+          <h1>Usuarios disponibles {{ usuariosDisponibles.length }}</h1>
+          <!-- Renderizo el componente usuarios, su propieda listado como usuarios disponibles y mover-a la lista usuarios seleccionados
+          como es MoverA en componente, en el template se pone mover-a, es la filosofía de Vue 
+        mover-a no lleva dos puntos porque no es un elemento del vector que vamos a poenr si no un valor fijo, es decir, no se resuleve, siempre es el mismo valor -->
+          <usuarios :listado="usuariosDisponibles" mover-a="usuariosSeleccionados"></usuarios>
+        </section>
+
+        <section class="seleccionados">
+          <!-- En todo momento reactivamente actualizo la lista de usuariios  -->
+          <h1>Usuarios seleccionados {{ usuariosSeleccionados.length }}</h1>
+         <!--  Idem al caso anterior -->
+          <usuarios :listado="usuariosSeleccionados" mover-a="usuariosDisponibles"></usuarios>
+        </section>
+      </article>
+
+      <pre>{{ $data }}</pre>
+
+    </main>
+    <!-- Template de renderización del componente usuarios -->
+      <template id="usuarios-template">
+        <section>
+          <!-- Rederizamos un componente usuario de la lista que se nos indica. que tiene un evento, y nos ponemos a esuchar e evento alterar seleccion
+          El componente usuaro lo creamos con la propiedad info -->
+          <usuario @seleccion="alterarSeleccion" v-for="usuario in listado" :info="usuario">
+          </usuario>
+        </section>
+      </template>
+
+      <!-- Template de renderización del componente usuario -->
+      <template id="usuario-template">
+       <!--  Detectamos el evento clic de este componente -->
+        <article class="usuario" @click="modificarSeleccion">
+         <!--  ponemos sus propiedades, nombre completo es un campo computado -->
+          <img :src="info.picture.large" :alt="info.nombre">
+          <h1 class="usuario__nombre">{{ nombreCompleto }}</h1>
+          <a :href="info.email">{{ info.email }}</a>
+          <p>{{ info.username }}</p>
+        </article>
+      </template>
+
+    <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
