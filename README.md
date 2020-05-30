@@ -27,6 +27,10 @@ Se describe los elementos ensenciales de Vue
 - Ejemplo resumen con Lista de Contactos con distintos componentes 
 - Ejemplo lista de contactos con elementos intercambiables
 
+### Intermedio
+- Configurando un proyecto con [Vue CLI](https://cli.vuejs.org/) y [Vue UI](https://cli.vuejs.org/guide/creating-a-project.html#vue-create)
+- [SFC](https://es.vuejs.org/v2/guide/single-file-components.html): Sigle File Components
+
 
 ## Autor
 
