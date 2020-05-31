@@ -3,8 +3,12 @@
     <!-- Barra de navegación -->
     <Navegacion/>
     <!-- <BaseForm/> -->
-    <!-- Aquí decimos que se rendirza el primer elemento del router, ya lo veremos -->
-    <router-view/>
+    <!-- Aquí decimos que se renderice el el elemento que apunta a routa
+    Es decir, como la ruta apunta a un path, busca en router
+    extra ele componente asociado y lo inyecta en la etiqueta RouterView -->
+   <!--  Kebab Case <router-view/> -->
+   <RouterView/>
+
   </div>
 </template>
 

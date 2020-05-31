@@ -9,6 +9,7 @@
         <li
             v-for="(item, $index) in itemsFiltrados"
             :key="item.id"
+            @click="verPost(item.id)"
             @eliminarItem="eliminarItem($index)">
             {{ item.title }}
         </li>
@@ -33,6 +34,22 @@ export default {
       this.items = items.data;
     });
   },
+  methods: {
+    verPost(postId) {
+      // Aquí llamamos al router para "empujarlo a la ruta post
+      // con el paramero id indicado"
+      // Es la navegación programática
+      this.$router.push({
+        name: 'post', params: { id: postId },
+      });
+    },
+  },
 
 };
 </script>
+
+<style scoped>
+li {
+  cursor: pointer;
+}
+</style>

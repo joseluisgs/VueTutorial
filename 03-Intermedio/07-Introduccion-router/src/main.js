@@ -2,7 +2,7 @@ import Vue from 'vue';
 import upperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
 import App from './App.vue';
-import router from './router';
+import router from './router'; // Impostamos router
 import store from './store';
 
 // Registro automatico de componentes BASE y de manera automatica
@@ -50,7 +50,7 @@ requireComponent.keys().forEach((fileName) => {
 });
 
 new Vue({
-  router,
+  router, // Inyectamos a la instancia principal el router
   store,
   render: (h) => h(App),
 }).$mount('#app');
