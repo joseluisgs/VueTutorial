@@ -34,6 +34,7 @@ Se describe los elementos ensenciales de Vue
 - Manejo de CSS Global y CSS Scoped
 - Uso de servicios
 - Intorducción a Mixins
+- Introduccion a Router
 
 
 
