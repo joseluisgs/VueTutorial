@@ -1,0 +1,46 @@
+<template>
+  <div id="app">
+    <!-- Barra de navegación -->
+    <Navegacion/>
+    <!-- <BaseForm/> -->
+    <!-- Aquí decimos que se renderice el el elemento que apunta a routa
+    Es decir, como la ruta apunta a un path, busca en router
+    extra ele componente asociado y lo inyecta en la etiqueta RouterView -->
+   <!--  Kebab Case <router-view/> -->
+   <RouterView/>
+
+  </div>
+</template>
+
+<script>
+import Navegacion from '@/components/Navegacion.vue';
+// import BaseForm from '@/components/BaseForm'
+export default {
+  components: {
+    Navegacion,
+    // BaseForm
+  },
+};
+</script>
+
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  text-align: center;
+}
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+</style>
