@@ -52,4 +52,9 @@ https://vue-loader.vuejs.org/guide/scoped-css.html */
 li a {
   color: red;
 }
+
+ul {
+  list-style-type: square;
+}
+
 </style>

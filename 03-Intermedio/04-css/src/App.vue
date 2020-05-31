@@ -26,6 +26,7 @@ export default {
 
 /* Este estilo es global, por lo tanto afecta a toda la página */
 <style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -33,5 +34,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+/* Así podemos importar un css del directorio de assets */
+@import url('/assets/main.css');
+li a {
+  color: blueviolet;
 }
 </style>
