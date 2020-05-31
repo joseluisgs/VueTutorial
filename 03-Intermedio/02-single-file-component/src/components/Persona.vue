@@ -17,7 +17,7 @@
 import axios from 'axios';
 
 export default {
-  name: 'PrimerSingleFileComponent', // Como me quiero exportar (nombre para que me indexen)
+  name: 'Persona', // Como me quiero exportar (nombre para que me indexen)
   // Mi modelo de datos
   data() {
     return {

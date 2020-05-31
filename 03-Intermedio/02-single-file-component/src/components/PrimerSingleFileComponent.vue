@@ -1,3 +1,9 @@
+<!--Un SFC funciona porque se descompone gracias a Vue Loader
+https://vue-loader.vuejs.org/#what-is-vue-loader
+A parte con el Hot Reload podemos ver como podemos actiualizar todo
+todas las instancias, estilos y elementos de ese componente se intercambiarán sin volver a cargar la página (mantiene el estado)
+https://vue-loader.vuejs.org/guide/hot-reload.html#state-preservation-rules -->
+
 <template>
  <!--  Siempre tiene que haber un nodo raiz -->
   <div class="PrimerComponente">
