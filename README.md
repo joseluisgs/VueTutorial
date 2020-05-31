@@ -33,6 +33,7 @@ Se describe los elementos ensenciales de Vue
 - Funciones de renderizado
 - Manejo de CSS Global y CSS Scoped
 - Uso de servicios
+- Intorducción a Mixins
 
 
 
