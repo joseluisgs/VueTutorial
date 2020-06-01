@@ -1,7 +1,12 @@
+// Vamos a estrucrturalo de otra manera para proyectos muy grandes
+// https://vuex.vuejs.org/guide/structure.html
 import Vue from 'vue';
 import Vuex from 'vuex';
 // Modulos
 import productos from './modules/productos';
+// Más
+import getters from './getters';
+import { mutations } from './mutations';
 
 Vue.use(Vuex);
 
@@ -12,14 +17,16 @@ export default new Vuex.Store({
     carro: [],
   },
   // Campos calculados sobre elementos del estado: getters
-  getters: {
-    totalCompra: (state) => state.carro.reduce((total, producto) => total + producto.precio, 0),
-  },
+  getters,
+  // getters: {
+  //   totalCompra: (state) => state.carro.reduce((total, producto) => total + producto.precio, 0),
+  // },
   // Mutaciones o cambios de estado síncronos: setters
-  mutations: {
-    comprarProducto: (state, indice) => state.carro.unshift(state.productos[indice]),
-    eliminarProducto: (state, indice) => state.carro.splice(indice, 1),
-  },
+  mutations,
+  // mutations: {
+  //   comprarProducto: (state, indice) => state.carro.unshift(state.productos[indice]),
+  //   eliminarProducto: (state, indice) => state.carro.splice(indice, 1),
+  // },
   // acciones asíncronas del estado
   actions: {
   },
