@@ -38,6 +38,11 @@ Se describe los elementos ensenciales de Vue
 - Introduccion al manejo del estado compartido, datos globales y Vuex
 - Ejemplo de lista de juegos, con multiple compoentes y eventos multinivel
 
+### Vuex
+- Revisa los commits, que será uno por lección con GitKraken podrás ir a cada uno de ellos
+- Configuración de [Vuex](https://vuex.vuejs.org/)
+- 
+
 
 
 ## Autor
