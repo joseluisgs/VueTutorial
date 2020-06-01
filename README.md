@@ -36,6 +36,7 @@ Se describe los elementos ensenciales de Vue
 - Intorducción a Mixins
 - Introduccion al manejo de rutas y Vue Router
 - Introduccion al manejo del estado compartido, datos globales y Vuex
+- Ejemplo de lista de juegos, con multiple compoentes y eventos multinivel
 
 
 
