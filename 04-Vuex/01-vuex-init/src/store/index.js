@@ -26,8 +26,15 @@ export default new Vuex.Store({
   getters: {
     tareasCompletadas: (state) => state.tareas.filter((tarea) => tarea.completado).length,
   },
-  // Funciones que cambian el estado
+  // Funciones que cambian el estado, encapsulan como acceder al estado y de qué manera
+  // https://vuex.vuejs.org/guide/mutations.html
   mutations: {
+    aumentar(state) {
+      state.cantidad += 1;
+    },
+    reducir(state) {
+      state.cantidad -= 1;
+    },
   },
   // funciones que confirman los cambios del estado
   actions: {

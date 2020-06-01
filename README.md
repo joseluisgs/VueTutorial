@@ -41,8 +41,8 @@ Se describe los elementos ensenciales de Vue
 ### Vuex
 - Revisa los commits, que será uno por lección con GitKraken podrás ir a cada uno de ellos
 - Configuración de [Vuex](https://vuex.vuejs.org/)
-- Getters: Nos permiten utilizar propiedades calculadas sobre elementos del estado y que estén copartidas.
-
+- Getters: Nos permiten utilizar propiedades calculadas sobre elementos del estado y que estén copartidas
+- Mutaciones: Funciones para cambiar el estado
 
 
 ## Autor
