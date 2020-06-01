@@ -10,6 +10,9 @@ export default new Vuex.Store({
   // https://vuex.vuejs.org/guide/state.html
   state: {
     cantidad: 0,
+    nombre: 'José Luis',
+    apellidos: 'González',
+    profesion: 'Profesor',
   },
   // Funciones que cambian el estado
   mutations: {

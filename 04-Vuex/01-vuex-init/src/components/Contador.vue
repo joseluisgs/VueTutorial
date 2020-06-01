@@ -12,6 +12,7 @@ export default {
   methods: {
     aumentar() {
       // this.$emit('aumentar');
+      // Usar estado de datos de Vuex directamente
       this.$store.state.cantidad += 1;
     },
     reducir() {
