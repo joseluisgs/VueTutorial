@@ -13,6 +13,18 @@ export default new Vuex.Store({
     nombre: 'José Luis',
     apellidos: 'González',
     profesion: 'Profesor',
+    tareas: [
+      { nombre: 'Aprender Vue Routing', completado: false },
+      { nombre: 'Organizar lecciones restantes', completado: false },
+      { nombre: 'Grabar lecciones mini curso ES6', completado: false },
+      { nombre: 'Preparar landing page curso', completado: false },
+      { nombre: 'Diseñar acciones de marketing', completado: true },
+    ],
+  },
+  // Getters, podemos obtener elemento computados del estado. Se realiza en único lugar:
+  // https://vuex.vuejs.org/guide/getters.html
+  getters: {
+    tareasCompletadas: (state) => state.tareas.filter((tarea) => tarea.completado).length,
   },
   // Funciones que cambian el estado
   mutations: {
