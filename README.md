@@ -43,6 +43,9 @@ Se describe los elementos ensenciales de Vue
 - Configuración de [Vuex](https://vuex.vuejs.org/)
 - Getters: Nos permiten utilizar propiedades calculadas sobre elementos del estado y que estén copartidas
 - Mutaciones: Funciones para cambiar el estado
+- Acciones pata la partte asíncrona
+- Módulos y Estructuración
+- Ejemplo de carro de compra con Vuex
 
 
 ## Autor

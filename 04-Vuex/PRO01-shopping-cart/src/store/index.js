@@ -76,6 +76,20 @@ export default new Vuex.Store({
     productsOnStock(state) {
       return state.products.filter((product) => product.inventory > 0);
     },
+    // Devuleve los productos del carrito, pues en el carito solo esta su id
+    productsOnCart(state) {
+      // Creamos un array mapeando los objetos...
+      return state.cart.map((item) => {
+        // Lo único que sabemos es que la id del producto coincide con la del producto
+        const product = state.products.find((p) => p.id === item.id);
+        // opbjeto a deviolver con el map
+        return {
+          title: product.title,
+          price: product.price,
+          quantity: item.quantity,
+        };
+      });
+    },
   },
   modules: {},
 });
