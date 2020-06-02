@@ -35,7 +35,9 @@ export default {
   computed: {
     // Obtenemos los productos del estado.
     products() {
-      return this.$store.state.products;
+      // return this.$store.state.products;
+      // Escuchamos los getters.
+      return this.$store.getters.productsOnStock;
     },
   },
   methods: {

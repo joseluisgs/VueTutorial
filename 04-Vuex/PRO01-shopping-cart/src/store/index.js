@@ -45,5 +45,13 @@ export default new Vuex.Store({
       });
     },
   },
+  // Los Getters nos permiten realizar operaciones sobre campos del estado
+  // Y devilover sus resultados, sería (son) com computed del estado
+  getters: {
+    // Devuleve aquellos que tiene una unidad de inventario mayor que 0
+    productsOnStock(state) {
+      return state.products.filter((product) => product.inventory > 0);
+    },
+  },
   modules: {},
 });

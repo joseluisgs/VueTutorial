@@ -12,6 +12,9 @@ const listProducts = [
   {
     id: 3, title: 'Charli XCX - Sucker CD', price: 19.99, inventory: 5,
   },
+  {
+    id: 4, title: 'Titulos a Gogo', price: 19.99, inventory: 0,
+  },
 ];
 
 export default {
