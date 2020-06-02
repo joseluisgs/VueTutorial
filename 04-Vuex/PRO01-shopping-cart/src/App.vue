@@ -2,16 +2,20 @@
   <div id="app">
     <!-- Renderizamos la lista de productos -->
     <AppProductList />
+    <!-- Carro de la compra -->
+    <AppShoppingCart />
   </div>
 </template>
 
 <script>
 import AppProductList from '@/components/AppProductList.vue';
+import AppShoppingCart from '@/components/AppShoppingCart.vue';
 
 export default {
   name: 'app',
   components: {
     AppProductList,
+    AppShoppingCart,
   },
 };
 </script>
@@ -24,5 +28,11 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#app > * {
+  flex-basis: 49%;
 }
 </style>

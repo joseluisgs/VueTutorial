@@ -1,12 +1,13 @@
 <template>
   <div>
-    <h1>Listado de productos</h1>
+    <h2>Listado de productos</h2>
     <hr />
     <ul>
       <!-- Recorremos la lista de productos -->
       <li v-for="product in products" :key="product.id">
         {{ product.title }} | {{ product.price }} €
         <i>{{ product.inventory }} uds.</i>
+        <button @click="addToCart(product)">Cart</button>
       </li>
     </ul>
   </div>
@@ -18,7 +19,7 @@
 export default {
   name: 'AppProductList',
   // Al crearnos
-  created() {
+  async created() {
     // // Obtenemos los productos desde fuera y se los asignamos al estado
     // // Como los productos deberían crearse al princpio y para todos,
     // // por eso recogerlas aquí noes válido, debería hacerlo una acción
@@ -30,7 +31,7 @@ export default {
     // Confirmamos las accion el cambio en el estado (por eso commit)
     //   this.$store.commit('setProducts', products);
     // });
-    this.getProducts();
+    await this.getProducts();
   },
   computed: {
     // Obtenemos los productos del estado.
@@ -49,6 +50,10 @@ export default {
       } catch (error) {
         console.error(error);
       }
+    },
+    // Añadimos un producto al carro
+    addToCart(product) {
+      this.$store.dispatch('addProductToCart', product);
     },
   },
 };
