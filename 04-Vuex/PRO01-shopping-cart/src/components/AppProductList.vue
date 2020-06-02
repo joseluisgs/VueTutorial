@@ -4,7 +4,10 @@
     <hr />
     <ul>
       <!-- Recorremos la lista de productos -->
+      <!-- Le indicamos la clase con claes dinámicas
+      De esta manera, activa esta clase si se da la condicon del getter -->
       <li
+        :class="{ 'sold-out': $store.getters.nearlySoldOut(product.id) }"
         v-for="product in products"
         :key="product.id"
         @click="selectProduct(product)"
@@ -73,4 +76,12 @@ export default {
 ul {
   text-align: left;
 }
+
+.sold-out {
+  background-color: lightpink;
+  border: 3px solid tomato;
+  padding: 0.3rem;
+  margin: 0.1rem;
+}
+
 </style>

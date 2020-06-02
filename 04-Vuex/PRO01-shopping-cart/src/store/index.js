@@ -181,6 +181,14 @@ export default new Vuex.Store({
     selectedProduct(state) {
       return state.selectedProduct;
     },
+
+    // Devolvemos si el producto esta cercano a agotarse
+    // Podemos pasarle argumentos a los getter si estos actúan como una función
+    // pero si hacemos que retornen una función, sí. Son muy útiles para hacer cosultas en tu store
+    // https://vuex.vuejs.org/guide/getters.html#method-style-access
+    nearlySoldOut(state) {
+      return (id) => state.products.find((product) => product.id === id).inventory < 2;
+    },
   },
   modules: {},
 });
