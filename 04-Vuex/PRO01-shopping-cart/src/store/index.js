@@ -110,6 +110,14 @@ export default new Vuex.Store({
         };
       });
     },
+    // Devuleve el total del carrito
+    cartTotal(state, getters) {
+      // De los productos del carrito
+      // Reduce te permite hacer una oprración sobre cada elemento
+      // El valor inicial de total es 0
+      return getters.productsOnCart
+        .reduce((total, current) => (total + current.price * current.quantity), 0);
+    },
   },
   modules: {},
 });

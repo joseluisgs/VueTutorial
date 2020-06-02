@@ -9,10 +9,14 @@
         <button @click="removeItem($index)">X</button>
       </li>
     </ul>
+    <hr />
+    <h4>Total {{ cartTotal || 0 }}</h4>
   </div>
 </template>
 
 <script>
+import { currency } from '@/utils/currency';
+
 export default {
   name: 'AppShoppingCart',
   // Métodos
@@ -26,9 +30,15 @@ export default {
   },
   // Datos computados
   computed: {
+    // Obtiene el listado del carrito
     cartItems() {
       // Accedemos al getter
       return this.$store.getters.productsOnCart;
+    },
+    // Obtiene el total del carrito
+    cartTotal() {
+      // Accedemos a su getter
+      return currency(this.$store.getters.cartTotal, ' €');
     },
   },
 };
