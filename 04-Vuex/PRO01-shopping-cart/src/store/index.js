@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+// Nustra API
+import api from '../api/shop';
 
 Vue.use(Vuex);
 
@@ -25,6 +27,23 @@ export default new Vuex.Store({
       state.products = products;
     },
   },
-  actions: {},
+  // En cuanto a las acciones, también son funciones pero a diferencia de las mutaciones
+  // pueden ser asíncronas, por lo que se utilizan para comunicarse con servicios externos
+  // y luego lanzar mutaciones para actualizar el estado
+  // (recuerda, sólo ellas pueden mutar el estado).
+  actions: {
+    // Simulamos que cogemos los productos
+    // De lo que me interesa es hacer un commit porque vamos a actualizar
+    // nuestro estado, si no podríamos usar otros parámetros
+    getProducts({ commit }) {
+      return new Promise((resolve) => {
+        api.getProducts((products) => {
+          // Hacemos el commit llamando a la mutacion que actualiza el estado
+          commit('setProducts', products);
+          resolve();
+        });
+      });
+    },
+  },
   modules: {},
 });

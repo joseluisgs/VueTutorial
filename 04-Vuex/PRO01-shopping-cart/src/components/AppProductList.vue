@@ -14,24 +14,39 @@
 
 <script>
 // Nuestra API
-import api from '../api/shop';
 
 export default {
   name: 'AppProductList',
   // Al crearnos
   created() {
-    // Obtenemos los productos desde fuera y se los asignamos al estado
-    api.getProducts((products) => {
-      // this.products = products; No hay un modelo local
-      // Si no importamos las mutaciones con mapMutations
-      // Lo hacemos accediendo al store y haciendo un commit (los cuales tambéns e pueden deshacer)
-      this.$store.commit('setProducts', products);
-    });
+    // // Obtenemos los productos desde fuera y se los asignamos al estado
+    // // Como los productos deberían crearse al princpio y para todos,
+    // // por eso recogerlas aquí noes válido, debería hacerlo una acción
+    // api.getProducts((products) => {
+    //   // this.products = products; No hay un modelo local
+    //   // Si no importamos las mutaciones con mapMutations
+    //   // Lo hacemos accediendo al store y haciendo un commit
+    // (los cuales tambéns e pueden deshacer)
+    // Confirmamos las accion el cambio en el estado (por eso commit)
+    //   this.$store.commit('setProducts', products);
+    // });
+    this.getProducts();
   },
   computed: {
     // Obtenemos los productos del estado.
     products() {
       return this.$store.state.products;
+    },
+  },
+  methods: {
+    async getProducts() {
+      // Usando una acción
+      try {
+        // Usamos dispach para lanzar la accion (despacha esta acción)
+        await this.$store.dispatch('getProducts');
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
 };
