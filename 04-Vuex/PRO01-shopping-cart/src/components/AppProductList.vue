@@ -51,7 +51,8 @@ export default {
         console.error(error);
       }
     },
-    // Añadimos un producto al carro
+    // Añadimos un producto al carro. Es una acción porque encapsula
+    // varios métodos si fuera uno podría ser una mutación
     addToCart(product) {
       this.$store.dispatch('addProductToCart', product);
     },

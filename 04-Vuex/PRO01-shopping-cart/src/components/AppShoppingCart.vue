@@ -3,8 +3,10 @@
     <h2>Carrito</h2>
     <hr />
     <ul>
-      <li v-for="item in cartItems" :key="item.id">
+      <li v-for="(item, $index) in cartItems" :key="item.id">
         {{ item.title }} ({{ item.quantity }})
+        <!-- Eliminamos los productos -->
+        <button @click="removeItem($index)">X</button>
       </li>
     </ul>
   </div>
@@ -13,6 +15,15 @@
 <script>
 export default {
   name: 'AppShoppingCart',
+  // Métodos
+  methods: {
+    // Elimina un elemento del carrito
+    removeItem(index) {
+      // Es una acción porque encapsula
+      // varios métodos si fuera uno podría ser una mutación
+      this.$store.dispatch('removeProductFromCart', index);
+    },
+  },
   // Datos computados
   computed: {
     cartItems() {

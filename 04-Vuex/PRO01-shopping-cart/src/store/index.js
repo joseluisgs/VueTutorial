@@ -33,6 +33,15 @@ export default new Vuex.Store({
     decrementProductInventory(state, product) {
       product.inventory -= 1;
     },
+    // Quita un producto del carrito
+    removeProductFromCart(state, index) {
+      state.cart.splice(index, 1); // el iídice y me llevo 1
+    },
+    // Incrementa el inventario
+    incrementProductInventory(state, item) {
+      const product = state.products.find((p) => p.id === item.id);
+      product.inventory += item.quantity;
+    },
   },
   // En cuanto a las acciones, también son funciones pero a diferencia de las mutaciones
   // pueden ser asíncronas, por lo que se utilizan para comunicarse con servicios externos
@@ -52,7 +61,9 @@ export default new Vuex.Store({
       });
     },
     // Para añadir un prudcto a un carrito.
-    // Usamos context porque vamos a acceder al estadi
+    // Usamos context porque vamos a acceder al estado
+    // es una acción porque
+    // Encapsula varios métodos báiscos que mutan nuestro modelo
     addProductToCart(context, product) {
       // ¿Hay inventario de ese producto?
       if (product.inventory === 0) return;
@@ -67,6 +78,15 @@ export default new Vuex.Store({
       }
       // Independientemente, restar al inventario de ese producto
       context.commit('decrementProductInventory', product);
+    },
+    // Elimina los elementos de un carrito. es una acción porque
+    // Encapsula varios métodos báiscos que mutan nuestro modelo
+    removeProductFromCart(context, index) {
+      const item = context.state.cart[index];
+      // Eliminar el producto del carrito
+      context.commit('removeProductFromCart', index);
+      // Restaurar el inventario
+      context.commit('incrementProductInventory', item);
     },
   },
   // Los Getters nos permiten realizar operaciones sobre campos del estado
