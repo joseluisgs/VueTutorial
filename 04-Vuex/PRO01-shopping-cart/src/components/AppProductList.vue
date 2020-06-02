@@ -4,7 +4,11 @@
     <hr />
     <ul>
       <!-- Recorremos la lista de productos -->
-      <li v-for="product in products" :key="product.id">
+      <li
+        v-for="product in products"
+        :key="product.id"
+        @click="selectProduct(product)"
+      >
         {{ product.title }} | {{ product.price }} €
         <i>{{ product.inventory }} uds.</i>
         <button @click="addToCart(product)">Cart</button>
@@ -56,6 +60,10 @@ export default {
     // varios métodos si fuera uno podría ser una mutación
     addToCart(product) {
       this.$store.dispatch('addProductToCart', product);
+    },
+    // Vamos a crerar una mutación que almacene el producto a editar
+    selectProduct(product) {
+      this.$store.commit('setSelectedProduct', product);
     },
   },
 };

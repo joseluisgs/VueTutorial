@@ -6,12 +6,16 @@ import shop from '../api/shop';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  // Modo estricto, no permite que accidentalmente modofiquemos el estado
+  // fuera de las motaciones
+  strict: true,
 
   // Variables compartidas, el estado. Es decir las cosas que compartimos
   state: {
     products: [], // Productos disponibles
     cart: [], // Modelo de carrito
     checkoutError: false, // si hay errores
+    selectedProduct: {}, // producto seleccionado
   },
 
   // El único capaz de modificar (mutar) el estado son las mutaciones.
@@ -60,6 +64,21 @@ export default new Vuex.Store({
     setCheckoutError(state, error) {
       state.checkoutError = error;
     },
+
+    // Establece el producto a editar
+    setSelectedProduct(state, product) {
+      state.selectedProduct = product;
+    },
+
+    // Editar el producto
+    editProduct(state, data) {
+      // Buscar el índice del producto
+      const index = state.products.findIndex((product) => product.id === state.selectedProduct.id);
+      // Componer el producto en base a las propiedades cambiadas
+      const product = { ...state.products[index], ...data };
+      // Actualizar activando la reactividad
+      Vue.set(state.products, index, product);
+    },
   },
 
   // En cuanto a las acciones, también son funciones pero a diferencia de las mutaciones
@@ -75,7 +94,7 @@ export default new Vuex.Store({
         shop.getProducts((products) => {
           // Hacemos el commit llamando a la mutacion que actualiza el estado
           commit('setProducts', products);
-          resolve();
+          resolve(); // Resolvemos la promesa de manera satisfactoria
         });
       });
     },
@@ -156,6 +175,11 @@ export default new Vuex.Store({
       // El valor inicial de total es 0
       return getters.productsOnCart
         .reduce((total, current) => (total + current.price * current.quantity), 0);
+    },
+
+    // Deveuleve el producto seleccionado
+    selectedProduct(state) {
+      return state.selectedProduct;
     },
   },
   modules: {},
