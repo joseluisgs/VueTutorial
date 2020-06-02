@@ -13,13 +13,20 @@
 </template>
 
 <script>
-// import api from "../api/shop.js";
+// Nuestra API
+import api from '../api/shop';
+
 export default {
   name: 'AppProductList',
+  // Al crearnos
   created() {
-    // api.getProducts(products => {
-    //   this.products = products;
-    // });
+    // Obtenemos los productos desde fuera y se los asignamos al estado
+    api.getProducts((products) => {
+      // this.products = products; No hay un modelo local
+      // Si no importamos las mutaciones con mapMutations
+      // Lo hacemos accediendo al store y haciendo un commit (los cuales tambéns e pueden deshacer)
+      this.$store.commit('setProducts', products);
+    });
   },
   computed: {
     // Obtenemos los productos del estado.

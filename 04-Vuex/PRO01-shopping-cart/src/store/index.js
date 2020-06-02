@@ -4,7 +4,7 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  // Variables compartidas, el estado.
+  // Variables compartidas, el estado. Es decir las cosas que compartimos
   state: {
     products: [
       {
@@ -18,7 +18,13 @@ export default new Vuex.Store({
       },
     ],
   },
-  mutations: {},
+  // El único capaz de modificar (mutar) el estado son las mutaciones.
+  // El primer parámetro siempre es el estado
+  mutations: {
+    setProducts(state, products) {
+      state.products = products;
+    },
+  },
   actions: {},
   modules: {},
 });
