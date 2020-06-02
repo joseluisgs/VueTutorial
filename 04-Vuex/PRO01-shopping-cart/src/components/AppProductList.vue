@@ -8,7 +8,7 @@
       De esta manera, activa esta clase si se da la condicon del getter -->
       <li
         :class="{ 'sold-out': $store.getters.nearlySoldOut(product.id) }"
-        v-for="product in products"
+        v-for="product in productsOnStock"
         :key="product.id"
         @click="selectProduct(product)"
       >
@@ -21,7 +21,10 @@
 </template>
 
 <script>
-// Nuestra API
+// Vamos a implementarlas usando mapas
+import {
+  mapState, mapGetters, mapActions, mapMutations,
+} from 'vuex';
 
 export default {
   name: 'AppProductList',
@@ -41,11 +44,18 @@ export default {
     await this.getProducts();
   },
   computed: {
-    // Obtenemos los productos del estado.
-    products() {
-      // return this.$store.state.products;
-      // Escuchamos los getters.
-      return this.$store.getters.productsOnStock;
+    // // Obtenemos los productos del estado.
+    // products() {
+    //   // return this.$store.state.products;
+    //   // Escuchamos los getters.
+    //   return this.$store.getters.productsOnStock;
+    // },
+
+    // Lo hacemos con mapas
+    ...mapState(['selectedProduct']),
+    ...mapGetters(['productsOnStock']),
+    testing() {
+      return null;
     },
   },
   methods: {
@@ -59,15 +69,24 @@ export default {
         console.error(error);
       }
     },
-    // Añadimos un producto al carro. Es una acción porque encapsula
-    // varios métodos si fuera uno podría ser una mutación
-    addToCart(product) {
-      this.$store.dispatch('addProductToCart', product);
-    },
-    // Vamos a crerar una mutación que almacene el producto a editar
-    selectProduct(product) {
-      this.$store.commit('setSelectedProduct', product);
-    },
+    // // Añadimos un producto al carro. Es una acción porque encapsula
+    // // varios métodos si fuera uno podría ser una mutación
+    // addToCart(product) {
+    //   this.$store.dispatch('addProductToCart', product);
+    // },
+    // // Vamos a crerar una mutación que almacene el producto a editar
+    // selectProduct(product) {
+    //   this.$store.commit('setSelectedProduct', product);
+    // },
+
+    // Repetimos usando los mapas
+    // Mpeamos el nombre de la función local, con la función del store
+    ...mapActions({
+      addToCart: 'addProductToCart',
+    }),
+    ...mapMutations({
+      selectProduct: 'setSelectedProduct',
+    }),
   },
 };
 </script>
