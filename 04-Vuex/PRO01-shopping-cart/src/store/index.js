@@ -1,16 +1,19 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 // Nustra API
-import api from '../api/shop';
+import shop from '../api/shop';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+
   // Variables compartidas, el estado. Es decir las cosas que compartimos
   state: {
     products: [], // Productos disponibles
     cart: [], // Modelo de carrito
+    checkoutError: false, // si hay errores
   },
+
   // El único capaz de modificar (mutar) el estado son las mutaciones.
   // El primer parámetro siempre es el estado
   mutations: {
@@ -18,10 +21,12 @@ export default new Vuex.Store({
     setProducts(state, products) {
       state.products = products;
     },
+
     // incrementa en 1 la cantidad
     incrementProductQuantity(state, item) {
       item.quantity += 1;
     },
+
     // Añade un producto al carrito, pero solo su id y su cantidad
     addProductToCart(state, product) {
       state.cart.push({
@@ -29,20 +34,34 @@ export default new Vuex.Store({
         quantity: 1,
       });
     },
+
     // Decrementa en el invetario
     decrementProductInventory(state, product) {
       product.inventory -= 1;
     },
+
     // Quita un producto del carrito
     removeProductFromCart(state, index) {
       state.cart.splice(index, 1); // el iídice y me llevo 1
     },
+
     // Incrementa el inventario
     incrementProductInventory(state, item) {
       const product = state.products.find((p) => p.id === item.id);
       product.inventory += item.quantity;
     },
+
+    // vacía el carrito
+    emptyCart(state) {
+      state.cart = [];
+    },
+
+    // si hay errores
+    setCheckoutError(state, error) {
+      state.checkoutError = error;
+    },
   },
+
   // En cuanto a las acciones, también son funciones pero a diferencia de las mutaciones
   // pueden ser asíncronas, por lo que se utilizan para comunicarse con servicios externos
   // y luego lanzar mutaciones para actualizar el estado
@@ -53,13 +72,14 @@ export default new Vuex.Store({
     // nuestro estado, si no podríamos usar otros parámetros
     getProducts({ commit }) {
       return new Promise((resolve) => {
-        api.getProducts((products) => {
+        shop.getProducts((products) => {
           // Hacemos el commit llamando a la mutacion que actualiza el estado
           commit('setProducts', products);
           resolve();
         });
       });
     },
+
     // Para añadir un prudcto a un carrito.
     // Usamos context porque vamos a acceder al estado
     // es una acción porque
@@ -79,6 +99,7 @@ export default new Vuex.Store({
       // Independientemente, restar al inventario de ese producto
       context.commit('decrementProductInventory', product);
     },
+
     // Elimina los elementos de un carrito. es una acción porque
     // Encapsula varios métodos báiscos que mutan nuestro modelo
     removeProductFromCart(context, index) {
@@ -88,7 +109,24 @@ export default new Vuex.Store({
       // Restaurar el inventario
       context.commit('incrementProductInventory', item);
     },
+
+    // Acción que realiza el checkout, simulandolo con la api
+    checkout({ commit, state }) {
+      // Acepta ua función de exito y otra de error, mira la api
+      shop.buyProducts(state.cart,
+        () => {
+          // Vaciar el carrito
+          commit('emptyCart');
+          // Establecer que no hay errores
+          commit('setCheckoutError', false);
+        },
+        () => {
+          // Establerce que hay errores
+          commit('setCheckoutError', true);
+        });
+    },
   },
+
   // Los Getters nos permiten realizar operaciones sobre campos del estado
   // Y devilover sus resultados, sería (son) com computed del estado
   getters: {
@@ -110,6 +148,7 @@ export default new Vuex.Store({
         };
       });
     },
+
     // Devuleve el total del carrito
     cartTotal(state, getters) {
       // De los productos del carrito

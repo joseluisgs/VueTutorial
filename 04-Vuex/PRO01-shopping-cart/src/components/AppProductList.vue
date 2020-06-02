@@ -42,6 +42,7 @@ export default {
     },
   },
   methods: {
+    // Obtiene todos los productos. Se puede meter este código en created
     async getProducts() {
       // Usando una acción
       try {

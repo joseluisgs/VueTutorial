@@ -9,8 +9,14 @@
         <button @click="removeItem($index)">X</button>
       </li>
     </ul>
+    <!--  Solos e verá si hay items en el carro -->
+    <button v-if="cartItems.length" @click="checkout">Checkout</button>
     <hr />
     <h4>Total {{ cartTotal || 0 }}</h4>
+    <!-- Mostramos los errores -->
+    <div v-if="$store.state.checkoutError">
+      <p>Error procesando los productos...</p>
+    </div>
   </div>
 </template>
 
@@ -19,6 +25,7 @@ import { currency } from '@/utils/currency';
 
 export default {
   name: 'AppShoppingCart',
+
   // Métodos
   methods: {
     // Elimina un elemento del carrito
@@ -27,7 +34,13 @@ export default {
       // varios métodos si fuera uno podría ser una mutación
       this.$store.dispatch('removeProductFromCart', index);
     },
+
+    // Checkout, disparamos la acción
+    checkout() {
+      this.$store.dispatch('checkout');
+    },
   },
+
   // Datos computados
   computed: {
     // Obtiene el listado del carrito
@@ -35,6 +48,7 @@ export default {
       // Accedemos al getter
       return this.$store.getters.productsOnCart;
     },
+
     // Obtiene el total del carrito
     cartTotal() {
       // Accedemos a su getter
