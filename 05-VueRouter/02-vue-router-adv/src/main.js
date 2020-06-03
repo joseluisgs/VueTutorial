@@ -8,11 +8,13 @@ Vue.config.productionTip = false;
 // Definimos protecciónd de rutas globales
 // to a donde
 // from desde donde
-// next es el paso a otra fubnción
+// next debe resolver verdadero o falso indicar otro path para dcir
+// entra o no
 // https://router.vuejs.org/guide/advanced/navigation-guards.html#global-before-guards
 router.beforeEach((to, from, next) => {
   console.log('Acceso a ruta');
-  next(store.state.auth);
+  // next(store.state.auth); // Si es verdadedo o falso
+  next(); // vamos a delegar a cada ruta
 });
 
 

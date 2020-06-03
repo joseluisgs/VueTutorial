@@ -7,6 +7,7 @@ import UsuarioFotos from '../components/UsuarioFotos.vue';
 import UsuarioBio from '../components/UsuarioBio.vue';
 import Contacto from '../components/Contacto.vue';
 import NoEncontrado from '../components/NoEncontrado.vue';
+import store from '../store';
 
 Vue.use(VueRouter);
 
@@ -38,6 +39,12 @@ const routes = [
     ],
   },
   {
+    // De esta manera protegemos solo una ruta
+    // https://router.vuejs.org/guide/advanced/navigation-guards.html#per-route-guard
+    beforeEnter: ((to, from, next) => {
+      console.log('Acceso a ruta contacto');
+      next(store.state.auth);
+    }),
     path: '/contacto',
     component: Contacto,
     name: 'contacto',
