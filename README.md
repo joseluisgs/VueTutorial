@@ -50,6 +50,8 @@ Se describe los elementos ensenciales de Vue
 ### Vue Router
 - Revisa los commits, que será uno por lección con GitKraken podrás ir a cada uno de ellos
 - Configuración de [Vue Router](https://router.vuejs.org/)
+- Router link, router view y active links
+- Navegación programática
 
 ## Autor
 
