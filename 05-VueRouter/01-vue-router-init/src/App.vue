@@ -7,7 +7,10 @@
       <router-link to="About">About</router-link> |
       <!-- Podemos poner el alias o name del router para evitar acordarnos de los path -->
       <router-link to="About">About</router-link> |
-      <router-link to="/contacto">Contacto</router-link>
+      <router-link to="/contacto">Contacto</router-link> |
+      <!-- Rutas dinamicas -->
+      <router-link to="/usuario/77">Usuario</router-link> |
+      <router-link :to="{ name: 'Usuario', params: { id: 123 }}">Usuario</router-link>
      <!--  Otra manera o descomponiendo las cosas  -->
      <h1>Rutas con Vue Router</h1>
         <router-link to="/" active-class="activo" tag="li" exact>
@@ -23,6 +26,16 @@
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      id: 77,
+    };
+  },
+};
+</script>
 
 <style>
 #app {

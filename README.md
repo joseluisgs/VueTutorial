@@ -52,6 +52,7 @@ Se describe los elementos ensenciales de Vue
 - Configuración de [Vue Router](https://router.vuejs.org/)
 - Router link, router view y active links
 - Navegación programática
+- Rutas dinámicas y reactividad en rutas
 
 ## Autor
 
