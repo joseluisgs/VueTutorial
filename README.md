@@ -59,6 +59,11 @@ Se describe los elementos ensenciales de Vue
 - Propiedades desde rutas
 - Modo historia y peticiones erróneas
 - Protección de rutas: global y local. Protección de componenets
+- Metadatos
+- Transiciones
+- Obtención de datos
+- Scroll
+- Enlaces perozosos o cargas asíncronas
 
 
 ## Autor
