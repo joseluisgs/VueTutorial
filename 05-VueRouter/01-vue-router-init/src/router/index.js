@@ -79,6 +79,14 @@ const routes = [
       },
     ],
   },
+  // Rutas y alias
+  // https://router.vuejs.org/guide/essentials/redirect-and-alias.html
+  {
+    path: '/prueba',
+    alias: '/otraprueba',
+    redirect: { name: 'home' }, // Nombre de la ruta a la que redirecciona
+    component: Home,
+  },
 ];
 
 const router = new VueRouter({

@@ -17,7 +17,10 @@
      <!--  Otra manera o descomponiendo las cosas  -->
     <router-link :to="'/equipo/' + user">Equipo/joseluis</router-link> |
     <!-- nombrando la ruta -->
-    <router-link :to="{ name: 'equipo', params: {id: user}}">Equipo</router-link>
+    <router-link :to="{ name: 'equipo', params: {id: user}}">Equipo</router-link> |∏
+    <!-- Redirecciones y alias -->
+    <router-link to="/prueba">Redireccion</router-link> |
+    <router-link to="/otraprueba">Alias</router-link> |
      <h1>Rutas con Vue Router</h1>
         <router-link to="/" active-class="activo" tag="li" exact>
             <a>Home</a>
