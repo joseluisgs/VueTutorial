@@ -3,6 +3,10 @@
         <button @click="cambiar">Cambiar Auth</button>
         <h4>Atenticación: {{auth}}</h4>
         <hr>
+        <router-link to="/info">Info</router-link> |
+        <!-- Nos vamos a desplazar hasta el hash -->
+        <router-link :to="{path: '/bio', hash: '#parrafo'}">Bio</router-link>
+        <hr>
         <!-- Uso transiciones para hacerlo "molón" -->
         <transition name="aparecer" appear>
           <router-view></router-view>

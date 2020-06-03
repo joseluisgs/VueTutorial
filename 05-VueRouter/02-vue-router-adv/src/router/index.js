@@ -7,6 +7,8 @@ import UsuarioFotos from '../components/UsuarioFotos.vue';
 import UsuarioBio from '../components/UsuarioBio.vue';
 import Contacto from '../components/Contacto.vue';
 import NoEncontrado from '../components/NoEncontrado.vue';
+import Info from '../components/Info.vue';
+import Bio from '../components/Bio.vue';
 import store from '../store';
 
 Vue.use(VueRouter);
@@ -53,6 +55,14 @@ const routes = [
     props: { newsletter: false },
   },
   {
+    path: '/info',
+    component: Info,
+  },
+  {
+    path: '/bio',
+    component: Bio,
+  },
+  {
     path: '*',
     component: NoEncontrado,
   },
@@ -62,6 +72,21 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+  // Control de scroll
+  // https://router.vuejs.org/guide/advanced/scroll-behavior.html#async-scrolling
+  // scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(to) {
+    const position = {};
+    console.log(to);
+    // Nos desplazamos hasta el hash de la dirección de destino (esto sí es interesante)
+    if (to.hash) {
+      position.selector = to.hash;
+    } else {
+      position.x = 200;
+      position.y = 100;
+    }
+    return position;
+  },
 });
 
 export default router;
