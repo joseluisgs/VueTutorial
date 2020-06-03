@@ -14,7 +14,14 @@ Vue.config.productionTip = false;
 router.beforeEach((to, from, next) => {
   console.log('Acceso a ruta');
   // next(store.state.auth); // Si es verdadedo o falso
-  next(); // vamos a delegar a cada ruta
+  // next(); // vamos a delegar a cada ruta
+  // tambien podemos pasar según metadatos de la ruta
+  // es muy elegante
+  if (to.meta.privado) {
+    next(store.state.auth);
+  } else {
+    next();
+  }
 });
 
 

@@ -48,6 +48,8 @@ const routes = [
     path: '/contacto',
     component: Contacto,
     name: 'contacto',
+    // Metadatos https://router.vuejs.org/guide/advanced/meta.html
+    meta: { privado: true },
     props: { newsletter: false },
   },
   {
