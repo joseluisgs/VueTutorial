@@ -10,3 +10,21 @@
         <router-view></router-view>-->
     </section>
 </template>
+<script>
+export default {
+  // Protección del componente
+  // https://router.vuejs.org/guide/advanced/navigation-guards.html#in-component-guards
+  beforeRouteEnter: ((to, from, next) => {
+    console.info('Antes de entrar');
+    next((vm) => console.log(vm));
+  }),
+  beforeRouteUpdate: ((to, from, next) => {
+    console.info('Antes de cambiar la ruta sobre el mismo componente');
+    next();
+  }),
+  beforeRouteLeave: ((to, from, next) => {
+    console.info('Antes de salir');
+    next();
+  }),
+};
+</script>

@@ -58,7 +58,8 @@ Se describe los elementos ensenciales de Vue
 - Redirecciones y alias
 - Propiedades desde rutas
 - Modo historia y peticiones erróneas
-- Protección de rutas: global y local
+- Protección de rutas: global y local. Protección de componenets
+
 
 ## Autor
 
