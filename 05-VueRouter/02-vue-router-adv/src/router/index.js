@@ -1,22 +1,51 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+import Home from '../components/Home.vue';
+import Equipo from '../components/Equipo.vue';
+import Usuario from '../components/Usuario.vue';
+import UsuarioFotos from '../components/UsuarioFotos.vue';
+import UsuarioBio from '../components/UsuarioBio.vue';
+import Contacto from '../components/Contacto.vue';
+import NoEncontrado from '../components/NoEncontrado.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    component: Home,
+    name: 'home',
+  },
+  {
+    path: '/prueba',
+    alias: '/otraprueba',
+    redirect: { name: 'home' },
     component: Home,
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    path: '/equipo/:id',
+    component: Equipo,
+    children: [
+      {
+        path: '',
+        components: {
+          default: Usuario,
+          bio: UsuarioBio,
+          fotos: UsuarioFotos,
+        },
+        name: 'equipo',
+      },
+    ],
+  },
+  {
+    path: '/contacto',
+    component: Contacto,
+    name: 'contacto',
+    props: { newsletter: false },
+  },
+  {
+    path: '*',
+    component: NoEncontrado,
   },
 ];
 

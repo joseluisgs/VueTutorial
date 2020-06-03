@@ -5,11 +5,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    auth: true,
   },
   mutations: {
-  },
-  actions: {
-  },
-  modules: {
+    cambiar: (state) => {
+      state.auth = !state.auth;
+    },
   },
 });
