@@ -65,12 +65,22 @@ Se describe los elementos ensenciales de Vue
 - Scroll
 - Enlaces perozosos o cargas asíncronas
 
+### Otros Aspectos
+- Curstom Directives
+- Mixins y filtros
+- Vue form Bindings
+
 
 ## Autor
 
 - [José Luis González Sánchez](https://twitter.com/joseluisgonsan) ![Twitter](https://img.shields.io/twitter/follow/joseluisgonsan?style=social)
 
 * [GitHub](https://github.com/joseluisgs) ![GitHub](https://img.shields.io/github/followers/joseluisgs?style=social)
+
+#### Sobre los ejemplos
+Ejemplos sacados inspirados y basados en mi experiencia cursando:
+- https://wmedia.teachable.com/p/aprende-vue2-y-firebase-paso-a-paso
+- https://escuelavue.es/como-aprender-vue
 
 ## Licencia
 
