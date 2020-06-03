@@ -8,6 +8,7 @@ import Equipo from '../views/Equipo.vue';
 import UsuarioFotos from '../views/UsuarioFotos.vue';
 import UsuarioBio from '../views/UsuarioBio.vue';
 import Suscripcion from '../views/Suscripcion.vue';
+import NoEncontrado from '../views/NoEncontrado.vue';
 
 Vue.use(VueRouter);
 
@@ -96,12 +97,19 @@ const routes = [
     name: 'suscripcion',
     props: { newsletter: true },
   },
+  // Otro destino que no esté ene path
+  // Error 404
+  {
+    path: '*',
+    component: NoEncontrado,
+  },
 ];
 
 const router = new VueRouter({
   // evita que veamos el # en la barra de historial
   // como http://loquesea.ocom/#/
   // debemos configurar correctamente el servidor para que trabaje de este modo
+  // https://router.vuejs.org/guide/essentials/history-mode.html#example-server-configurations
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
