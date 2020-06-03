@@ -53,6 +53,12 @@ Se describe los elementos ensenciales de Vue
 - Router link, router view y active links
 - Navegación programática
 - Rutas dinámicas y reactividad en rutas
+- Rutas anidadas, u rutas dinámicas anidasas
+- Nombres de rutas y nombres de vistas
+- Redirecciones y alias
+- Propiedades desde rutas
+- Modo historia y peticiones erróneas
+- Protección de rutas
 
 ## Autor
 
