@@ -8,7 +8,7 @@ import UsuarioBio from '../components/UsuarioBio.vue';
 import Contacto from '../components/Contacto.vue';
 import NoEncontrado from '../components/NoEncontrado.vue';
 import Info from '../components/Info.vue';
-import Bio from '../components/Bio.vue';
+// import Bio from '../components/Bio.vue';
 import store from '../store';
 
 Vue.use(VueRouter);
@@ -60,7 +60,10 @@ const routes = [
   },
   {
     path: '/bio',
-    component: Bio,
+    // De esta manera le decimos que el componente se cargue solo cuando lo necesite
+    // Es igual que la carga de componentes asíncronos.
+    // https://router.vuejs.org/guide/advanced/lazy-loading.html
+    component: () => import(/* webpackChunkName: "about" */ '../components/Bio.vue'),
   },
   {
     path: '*',
