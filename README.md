@@ -47,6 +47,9 @@ Se describe los elementos ensenciales de Vue
 - Módulos y Estructuración
 - Ejemplo de carro de compra con Vuex
 
+### Vue Router
+- Revisa los commits, que será uno por lección con GitKraken podrás ir a cada uno de ellos
+- Configuración de [Vue Router](https://router.vuejs.org/)
 
 ## Autor
 
