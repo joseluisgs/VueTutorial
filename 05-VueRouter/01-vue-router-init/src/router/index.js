@@ -7,6 +7,7 @@ import Usuario from '../views/Usuario.vue';
 import Equipo from '../views/Equipo.vue';
 import UsuarioFotos from '../views/UsuarioFotos.vue';
 import UsuarioBio from '../views/UsuarioBio.vue';
+import Suscripcion from '../views/Suscripcion.vue';
 
 Vue.use(VueRouter);
 
@@ -86,6 +87,14 @@ const routes = [
     alias: '/otraprueba',
     redirect: { name: 'home' }, // Nombre de la ruta a la que redirecciona
     component: Home,
+  },
+  // Pasar Propiedads a un componente
+  // https://router.vuejs.org/guide/essentials/passing-props.html
+  {
+    path: '/suscripcion',
+    component: Suscripcion,
+    name: 'suscripcion',
+    props: { newsletter: true },
   },
 ];
 
