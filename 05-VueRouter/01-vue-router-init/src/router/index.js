@@ -49,7 +49,8 @@ const routes = [
       {
         // '/equipo/:id'
         path: '',
-        component: Usuario,
+        // Si usamos rutas
+        /* component: Usuario,
         name: 'equipo',
         children: [
           {
@@ -64,7 +65,17 @@ const routes = [
             component: UsuarioBio,
             name: 'bio',
           },
-        ],
+        ], */
+        // Nombrando vistas por
+        // se rendirzara el componente en los routed view con
+        // este nombre
+        // https://router.vuejs.org/guide/essentials/named-views.html#nested-named-views
+        components: {
+          default: Usuario,
+          bio: UsuarioBio,
+          fotos: UsuarioFotos,
+        },
+        name: 'equipo',
       },
     ],
   },

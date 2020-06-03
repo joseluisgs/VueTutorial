@@ -7,9 +7,11 @@
         <!-- <router-link :to="'/equipo/' + $route.params.id + '/fotos'">Fotos</router-link> |
         <router-link :to="'/equipo/' + $route.params.id + '/bio'">Bio</router-link>
         Nombrando las rutas -->
+        <!--
         <router-link :to="{ name:'fotos', params: {id: $route.params.id}}">Fotos</router-link> |
-        <router-link :to="{ name: 'bio', params: {id: $route.params.id}}">Bio</router-link>
-        <!-- Carga los enlaces que queremos aquí -->
+        <router-link :to="{ name: 'bio', params: {id: $route.params.id}}">Bio</router-link> -->
+        <!-- Carga los enlaces que queremos aquí
         <router-view></router-view>
+        Comentamos porque vamos a cargar usando vistas, nombramndolas -->
     </section>
 </template>
