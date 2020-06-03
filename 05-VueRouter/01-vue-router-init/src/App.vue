@@ -10,8 +10,11 @@
       <router-link to="/contacto">Contacto</router-link> |
       <!-- Rutas dinamicas -->
       <router-link to="/usuario/77">Usuario</router-link> |
-      <router-link :to="{ name: 'Usuario', params: { id: 123 }}">Usuario</router-link>
+      <router-link :to="{ name: 'Usuario', params: { id: 123 }}">Usuario</router-link> |
+      <!-- Rutas anidadas estaticas -->
+      <router-link to="/equipo/joseluis">Equipo/joseluis</router-link> |
      <!--  Otra manera o descomponiendo las cosas  -->
+      <router-link :to="'/equipo/' + user">Equipo/joseluis</router-link>
      <h1>Rutas con Vue Router</h1>
         <router-link to="/" active-class="activo" tag="li" exact>
             <a>Home</a>
@@ -32,6 +35,7 @@ export default {
   data() {
     return {
       id: 77,
+      user: 'joseluis',
     };
   },
 };

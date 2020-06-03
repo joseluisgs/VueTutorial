@@ -4,6 +4,9 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Contacto from '../views/Contacto.vue';
 import Usuario from '../views/Usuario.vue';
+import Equipo from '../views/Equipo.vue';
+import UsuarioFotos from '../views/UsuarioFotos.vue';
+import UsuarioBio from '../views/UsuarioBio.vue';
 
 Vue.use(VueRouter);
 
@@ -33,6 +36,35 @@ const routes = [
     path: '/usuario/:id', // Este es magic params, es decir, el parámetro que obtenemos.
     name: 'Usuario',
     component: Usuario,
+  },
+  // Rutas anidadas, como un vector dentro de la ruta principal
+  // https://router.vuejs.org/guide/essentials/nested-routes.html
+  {
+    path: '/equipo/:id',
+    component: Equipo,
+    name: 'Equipo',
+    children: [
+      {
+        // '/equipo/:id'
+        path: '',
+        component: Usuario,
+        name: 'Usuario',
+        children: [
+          {
+            // '/equipo/:id/fotos'
+            path: 'fotos',
+            component: UsuarioFotos,
+            name: 'fotos',
+          },
+          // '/equipo/:id/bio'
+          {
+            path: 'bio',
+            component: UsuarioBio,
+            name: 'bio',
+          },
+        ],
+      },
+    ],
   },
 ];
 
