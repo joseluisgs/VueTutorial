@@ -16,7 +16,9 @@ export default {
   methods: {
     // Cuando pulsamos
     volverHome() {
-      this.$router.push('/', () => console.log('Ruta cambiada')); // Home
+      // this.$router.push('/', () => console.log('Ruta cambiada')); // Home
+      // Nombrando la ruta
+      this.$router.push({ name: 'home' }, () => console.log('Ruta cambiada'));
     },
   },
 };

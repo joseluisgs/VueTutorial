@@ -13,7 +13,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: Home,
   },
   {
@@ -27,28 +27,30 @@ const routes = [
   },
   {
     path: '/contacto',
-    name: 'Contacto',
+    name: 'contacto',
     component: Contacto,
   },
   {
     // rutas dinámicas
     // https://router.vuejs.org/guide/essentials/dynamic-matching.html#reacting-to-params-changes
     path: '/usuario/:id', // Este es magic params, es decir, el parámetro que obtenemos.
-    name: 'Usuario',
+    name: 'usuario',
     component: Usuario,
   },
   // Rutas anidadas, como un vector dentro de la ruta principal
   // https://router.vuejs.org/guide/essentials/nested-routes.html
+  // como nombrar las rutas para acceder a ellas más facilmente
+  // https://router.vuejs.org/guide/essentials/named-routes.html
+  // es mejor usar su nombres que el pathm si cambia
   {
     path: '/equipo/:id',
     component: Equipo,
-    name: 'Equipo',
     children: [
       {
         // '/equipo/:id'
         path: '',
         component: Usuario,
-        name: 'Usuario',
+        name: 'equipo',
         children: [
           {
             // '/equipo/:id/fotos'
