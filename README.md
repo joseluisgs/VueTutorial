@@ -66,7 +66,7 @@ Se describe los elementos ensenciales de Vue
 - Enlaces perozosos o cargas asíncronas
 
 ### Otros Aspectos
-- Curstom Directives
+- Custom Directives
 - Mixins y filtros
 - Vue form Bindings
 
