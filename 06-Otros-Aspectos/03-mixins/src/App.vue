@@ -15,11 +15,24 @@
 
 <script>
     // Importamos nuestro mixins y heredamos sus elementos
+    // https://vuejs.org/v2/guide/mixins.html#Option-Merging
     import {mixin} from './mixins';
     export default {
         // Aquí ya heredamos las cosas.
         mixins: [mixin],
-    }
+        // Primero se inicializa con los mixisn 
+        // luego se sobrescribe con los métodos del objeto
+        created() {
+            console.log('Created desde el componente');
+            this.saludar();
+        },
+         methods: {
+             // este método queda sobre escrito
+            saludar() {
+                alert('Hola desde el component');
+            },
+        },
+    };
 </script>
 
 <style>

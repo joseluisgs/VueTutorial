@@ -2,6 +2,10 @@
 // https://vuejs.org/v2/guide/mixins.html#Basics
 // Se puede compartir datos, metodos, etc.
 export const mixin = {
+    created() {
+        console.log('Created desde el mixin');
+        this.saludar();
+    },
     data () {
         return {
             aprender: [
@@ -20,6 +24,9 @@ export const mixin = {
                 nombre: this.nuevaTecnologia,
             });
             this.nuevaTecnologia = null;
+        },
+        saludar() {
+            alert('Hola desde el mixin');
         }
     }
 };
