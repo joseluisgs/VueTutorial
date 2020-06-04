@@ -75,6 +75,7 @@ Se describe los elementos ensenciales de Vue
 - Leer y Escribir
 - Uso en tiempo real
 - Actualizar
+- Eliminar
 
 
 ## Autor

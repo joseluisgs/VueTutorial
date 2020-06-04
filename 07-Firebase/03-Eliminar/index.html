@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue - Firebase</title>
+</head>
+<body>
+    <div id="app">
+        <form @submit.prevent="enviarMensaje">
+            <textarea v-model="mensaje" cols="30" rows="10"></textarea>
+            <br>
+            <input type="submit" value="Enviar mensaje">
+        </form>
+        <hr>
+        <h1>Mensajes</h1>
+        <ul>
+            <li v-for="mensaje in mensajes">
+                <span contenteditable="true" @blur="editarMensaje($event, mensaje.id)">
+                    {{ mensaje.mensaje}}
+                </span>
+                <small><i>por: {{ mensaje.username }}</i></small>
+                <small><i>({{ mensaje.time }})</i></small>
+                <button @click="eliminarMensaje(mensaje.id)">X</button>
+            </li>
+        </ul>
+    </div>
+
+<!-- Vue -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.js"></script>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+<!-- Firestore -->
+<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-firestore.js"></script>
+<!-- Claves -->
+<script src="firebase.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+//   var firebaseConfig = {
+//     apiKey: "",
+//     authDomain: "",
+//     databaseURL: "",
+//     projectId: "",
+//     storageBucket: "",
+//     messagingSenderId: "",
+//     appId: ""
+//   };
+  
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  // Inicializamos firestore
+  const db = firebase.firestore();
+  // Creamos una colección si no exiuste e insertamos un documento, con la clave, es set
+
+    // Vue stuff
+    new Vue({
+        el: '#app',
+        async created() {
+            // Cargamos todos los mensajes, esto sería así
+            //await this.cargarMensajes();
+            // Pero vamos a usar suscripción en tiempo real, de esta manera cada vez que haya un cambio
+            // Lo actualiza de manera reactiva
+            // https://firebase.google.com/docs/firestore/query-data/listen?hl=es-419
+            db.collection("chats").orderBy("time", "desc")
+            .onSnapshot((docs) => {
+                let documentos = [];
+                docs.forEach((doc) => {
+                    documentos.push({
+                        id: doc.id,
+                        mensaje: doc.data().mensaje,
+                        username: doc.data().username,
+                        time: new Date(doc.data().time).toLocaleString(),
+                    });
+                });
+                this.mensajes = documentos;
+            });
+        },
+        data: {
+            mensaje: null,
+            username: 'joseluisgs',
+            mensajes: [],
+        },
+        methods: {
+            // Cargamos los mensajes
+            async cargarMensajes() {
+                const docs = await db.collection("chats").orderBy("time", "desc").get();
+                this.mensajes = [];
+                docs.forEach(doc => {
+                    //console.log(doc.id);
+                    this.mensajes.push({
+                        id: doc.id,
+                        mensaje: doc.data().mensaje,
+                        username: doc.data().username,
+                        time: new Date(doc.data().time).toLocaleString(),
+                    });
+                });
+                // Si le pongo dec ya lo hace la consulta (this.mensajes.reverse();
+            },
+            // Enviamos los mensajes
+            enviarMensaje() {
+                db.collection("chats").add({
+                        mensaje: this.mensaje,
+                        username: this.username,
+                        time: Date.now(),
+                    })
+                    .then(async (data) => {
+                        this.mensaje = '';
+                        // await this.cargarMensajes();
+                    });
+            },
+            // Actualizamos los datos mezclando los datos
+            // https://firebase.google.com/docs/firestore/manage-data/add-data?hl=es
+            editarMensaje(mensaje, id) {
+                console.log(id);
+                db.collection("chats").doc(id).set({
+                    mensaje: mensaje.target.innerHTML,
+                }, { merge: true })
+                .then(() => {
+                    console.log("Documento actualizado");
+                })
+                .catch((error) => {
+                    console.error("Erro al actuaizar: ", error);
+                });
+            },
+            // Eliminamos un mensaje
+            // https://firebase.google.com/docs/firestore/manage-data/delete-data?hl=es
+            eliminarMensaje(id) {
+                if (confirm('¿Seguro?'))
+                db.collection("chats").doc(id).delete()
+                    .then(() => {
+                        console.log("Mensaje eliminado");
+                    })
+                    .catch((error) => {
+                        console.error("Error el eliminar mensaje: ", error);
+                    });
+            },
+        },
+    });
+
+</script>
+
+
+</body>
+</html>
