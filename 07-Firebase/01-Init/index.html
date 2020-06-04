@@ -5,16 +5,28 @@
     <title>Vue - Firebase</title>
 </head>
 <body>
-<form id="formulario">
-    <textarea name="mensaje" id="mensaje" cols="30" rows="10"></textarea>
-    <br>
-    <input type="submit" value="Enviar mensaje">
-</form>
+    <div id="app">
+        <form @submit.prevent="enviarMensaje">
+            <textarea v-model="mensaje" cols="30" rows="10"></textarea>
+            <br>
+            <input type="submit" value="Enviar mensaje">
+        </form>
+        <hr>
+        <h1>Mensajes</h1>
+        <ul>
+            <li v-for="mensaje in mensajes">
+                {{ mensaje.mensaje}}
+                <small><i>({{ mensaje.username }})</i></small>
+            </li>
+        </ul>
+    </div>
 
-
-
+<!-- Vue -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.js"></script>
+<!-- Firebase -->
 <script src="https://www.gstatic.com/
 firebasejs/7.2.1/firebase-app.js"></script>
+<!-- Firestore -->
 <script src="https://www.gstatic.com/
 firebasejs/7.2.1/firebase-firestore.js"></script>
 <script src="firebase.js"></script>

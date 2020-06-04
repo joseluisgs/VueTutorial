@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue - Firebase</title>
+</head>
+<body>
+    <div id="app">
+        <form @submit.prevent="enviarMensaje">
+            <textarea v-model="mensaje" cols="30" rows="10"></textarea>
+            <br>
+            <input type="submit" value="Enviar mensaje">
+        </form>
+        <hr>
+        <h1>Mensajes</h1>
+        <ul>
+            <li v-for="mensaje in mensajes">
+                {{ mensaje.mensaje}}
+                <small><i>por: {{ mensaje.username }}</i></small>
+                <small><i>({{ mensaje.time }})</i></small>
+            </li>
+        </ul>
+    </div>
+
+<!-- Vue -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.js"></script>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+<!-- Firestore -->
+<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-firestore.js"></script>
+<!-- Claves -->
+<script src="firebase.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+//   var firebaseConfig = {
+//     apiKey: "",
+//     authDomain: "",
+//     databaseURL: "",
+//     projectId: "",
+//     storageBucket: "",
+//     messagingSenderId: "",
+//     appId: ""
+//   };
+  
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  // Inicializamos firestore
+  const db = firebase.firestore();
+  // Creamos una colección si no exiuste e insertamos un documento, con la clave, es set
+
+    // Vue stuff
+    new Vue({
+        el: '#app',
+        async created() {
+            await this.cargarMensajes();
+        },
+        data: {
+            mensaje: null,
+            username: 'joseluisgs',
+            mensajes: [],
+        },
+        methods: {
+            // Cargamos los mensajes
+            async cargarMensajes() {
+                const docs = await db.collection("chats").orderBy("time", "desc").get();
+                this.mensajes = [];
+                docs.forEach(doc => {
+                    console.log(doc.id);
+                    this.mensajes.push({
+                        id: doc.id,
+                        mensaje: doc.data().mensaje,
+                        username: doc.data().username,
+                        time: new Date(doc.data().time).toLocaleString(),
+                    });
+                });
+                // Si le pongo dec ya lo hace la consulta (this.mensajes.reverse();
+            },
+            // Enviamos los mensajes
+            enviarMensaje() {
+                db.collection("chats").add({
+                        mensaje: this.mensaje,
+                        username: this.username,
+                        time: Date.now(),
+                    })
+                    .then(async (data) => {
+                        this.mensaje = '';
+                        await this.cargarMensajes();
+                    });
+            }
+        }
+    });
+
+</script>
+
+
+</body>
+</html>
