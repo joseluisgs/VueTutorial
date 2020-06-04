@@ -20,6 +20,7 @@
     export default {
         // Aquí ya heredamos las cosas.
         mixins: [mixin],
+        nombre: 'App.vue',
         // Primero se inicializa con los mixisn 
         // luego se sobrescribe con los métodos del objeto
         created() {
@@ -28,9 +29,9 @@
         },
          methods: {
              // este método queda sobre escrito
-            saludar() {
-                alert('Hola desde el component');
-            },
+            // saludar() {
+            //     alert('Hola desde el component');
+            // },
         },
     };
 </script>
