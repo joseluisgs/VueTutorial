@@ -64,6 +64,21 @@
         <input v-if="formulario.acepta" type="submit" value="Enviar">
     </form>
     <hr>
+     <!-- Checkbox: se le puede enlzar diectamente un valor
+    Y se le asigna otro valor
+    Si esta cheked se le asocia a a, si no a b -->
+     <input type="checkbox" v-model="checkbox" :true-value="a" :false-value="b">
+
+     <!-- Radio -->
+     <!--<input type="radio" v-model="radio" :value="a" Aqui decimos que evalue lo que hay almacenando en la propiedad a>
+    De esta manera le asignamos todos estos valores si se pulsa -->
+     <input type="radio" v-model="radio" :value="[1, 2, 3, 4, 5]">
+ 
+     <!-- Select. Se se selecciona b se le asocia el valor de b -->
+     <select v-model="select">
+         <option :value="b">Jose</option>
+     </select>
+     <hr>
     <pre>{{ $data }}</pre>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.js"></script>
@@ -84,7 +99,12 @@
                 'Amigo o familiar',
                 'Internet',
                 'TV o radio',
-            ]
+            ],
+            checkbox: null,
+            radio: null,
+            select: null,
+            a: {estado: 'checked'},
+            b: {estado: 'unchecked'},
         },
         methods: {
             enviar() {
