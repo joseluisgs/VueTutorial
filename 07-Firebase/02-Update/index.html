@@ -15,7 +15,9 @@
         <h1>Mensajes</h1>
         <ul>
             <li v-for="mensaje in mensajes">
-                {{ mensaje.mensaje}}
+                <span contenteditable="true" @blur="editarMensaje($event, mensaje.id)">
+                    {{ mensaje.mensaje}}
+                </span>
                 <small><i>por: {{ mensaje.username }}</i></small>
                 <small><i>({{ mensaje.time }})</i></small>
             </li>
@@ -104,8 +106,22 @@
                         this.mensaje = '';
                         // await this.cargarMensajes();
                     });
-            }
-        }
+            },
+            // Actualizamos los datos mezclando los datos
+            // https://firebase.google.com/docs/firestore/manage-data/add-data?hl=es
+            editarMensaje(mensaje, id) {
+                console.log(id);
+                db.collection("chats").doc(id).set({
+                    mensaje: mensaje.target.innerHTML,
+                }, { merge: true })
+                .then(() => {
+                    console.log("Documento actualizado");
+                })
+                .catch((error) => {
+                    console.error("Erro al actuaizar: ", error);
+                });
+            },
+        },
     });
 
 </script>
