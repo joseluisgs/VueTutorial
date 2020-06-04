@@ -62,6 +62,7 @@
             // Pero vamos a usar suscripción en tiempo real, de esta manera cada vez que haya un cambio
             // Lo actualiza de manera reactiva
             // https://firebase.google.com/docs/firestore/query-data/listen?hl=es-419
+            // ordenar y filltrar https://firebase.google.com/docs/firestore/query-data/order-limit-data?hl=es
             db.collection("chats").orderBy("time", "desc")
             .onSnapshot((docs) => {
                 let documentos = [];

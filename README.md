@@ -76,6 +76,8 @@ Se describe los elementos ensenciales de Vue
 - Uso en tiempo real
 - Actualizar
 - Eliminar
+- Transacciones
+- Ordenar y filtrar
 
 
 ## Autor
