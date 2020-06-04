@@ -2,6 +2,8 @@
 // Son directivas personalizadas creadas para compartir y personalizar y reutilizarlas
 Vue.directive('fijar', {
     // Cuando exista el bind, puesto
+    // el es elemento donde lo vamos a apliacra
+    // binding es la directiva
     bind(el, binding) {
         console.log(el,binding);
         // Lo dejamos fijado...
