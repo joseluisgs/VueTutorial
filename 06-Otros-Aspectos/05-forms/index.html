@@ -79,6 +79,13 @@
          <option :value="b">Jose</option>
      </select>
      <hr>
+     <form @submit.prevent="enviar2">
+        <!-- Modificadores, lazy, este evento solo sucede cuando un change y no un imput y a partte le hacemos un trim
+        https://vuejs.org/v2/guide/forms.html#Modifiers -->
+        <input type="text" v-model.trim.lazy="formulario2">
+        <input type="submit" value="Enviar">
+    </form>
+    <hr>
     <pre>{{ $data }}</pre>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.js"></script>
@@ -105,12 +112,16 @@
             select: null,
             a: {estado: 'checked'},
             b: {estado: 'unchecked'},
+            formulario2: null,
         },
         methods: {
             enviar() {
                 for (let key in this.formulario) {
                     console.info(`${key} : ${this.formulario[key]}`);
                 }
+            },
+            enviar2() {
+                console.info(typeof this.formulario);
             }
         }
     });

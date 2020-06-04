@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue - Firebase</title>
+</head>
+<body>
+<form id="formulario">
+    <textarea name="mensaje" id="mensaje" cols="30" rows="10"></textarea>
+    <br>
+    <input type="submit" value="Enviar mensaje">
+</form>
+
+
+
+<script src="https://www.gstatic.com/
+firebasejs/7.2.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/
+firebasejs/7.2.1/firebase-firestore.js"></script>
+<script src="firebase.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  // Inicializamos firestore
+  const db = firebase.firestore();
+  // Creamos una colección si no exiuste e insertamos un documento, con la clave, es set
+  db.collection("cities").doc("LA").set({
+    name: "Los Angeles",
+    state: "CA",
+    country: "USA"
+    })
+    .then(function() {
+        console.log("Document successfully written!");
+    })
+    .catch(function(error) {
+        console.error("Error writing document: ", error);
+    });
+
+    // Guardar nuevos datos anidados (lista)
+    document.getElementById('formulario').onsubmit= function(event) {
+        event.preventDefault();
+        let mensaje = document.getElementById('mensaje');
+        // si no tenemos la clave usamos add
+        db.collection("chats").add({
+            username: 'pepe',
+            mensaje: mensaje.value,
+        }).then(() => {
+            console.info('Mensaje enviado');
+            mensaje.value = '';
+        });
+    };
+
+</script>
+
+
+</body>
+</html>
