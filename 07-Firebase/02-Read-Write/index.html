@@ -53,7 +53,24 @@
     new Vue({
         el: '#app',
         async created() {
-            await this.cargarMensajes();
+            // Cargamos todos los mensajes, esto sería así
+            //await this.cargarMensajes();
+            // Pero vamos a usar suscripción en tiempo real, de esta manera cada vez que haya un cambio
+            // Lo actualiza de manera reactiva
+            db.collection("chats").orderBy("time", "desc")
+            .onSnapshot((docs) => {
+                var documentos = [];
+                docs.forEach((doc) => {
+                    documentos.push({
+                        id: doc.id,
+                        mensaje: doc.data().mensaje,
+                        username: doc.data().username,
+                        time: new Date(doc.data().time).toLocaleString(),
+                    });
+                });
+                console.log("Documentos: ", documentos);
+                this.mensajes = documentos;
+            });
         },
         data: {
             mensaje: null,
@@ -66,7 +83,7 @@
                 const docs = await db.collection("chats").orderBy("time", "desc").get();
                 this.mensajes = [];
                 docs.forEach(doc => {
-                    console.log(doc.id);
+                    //console.log(doc.id);
                     this.mensajes.push({
                         id: doc.id,
                         mensaje: doc.data().mensaje,
@@ -85,7 +102,7 @@
                     })
                     .then(async (data) => {
                         this.mensaje = '';
-                        await this.cargarMensajes();
+                        // await this.cargarMensajes();
                     });
             }
         }
