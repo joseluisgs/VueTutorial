@@ -70,6 +70,12 @@ Se describe los elementos ensenciales de Vue
 - Mixins y filtros
 - Vue form Bindings
 
+### Firebase
+- Iniciailiazr Firebase
+- Leer y Escribir
+- Uso en tiempo real
+- Actualizar
+
 
 ## Autor
 
